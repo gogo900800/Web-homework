@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title >@ViewData["Title"] - Sugar</title>
+    <link rel="stylesheet" href="~/css/Style.css" asp-append-version="true" />
+
+
+
+</head>
+<body>
+   
+    <header style="margin:0; width:100%;">
+        <nav>
+            <div class="flex_container" style="background-color: rgb(59, 62, 72)">
+                <div style="width: 8%; background-color: rgb(54, 60, 72); border-radius: 33px;">
+                    <a style="font-family: Roboto, sans-serif; margin: 0.1%; text-align:center; color:white;" href="/Registration_form">Sign Up</a>
+                </div>
+                <div style="font-size: 35px; margin: auto; width: 14%; border-radius: 33px;">
+                    <a href="/Home_page">Home page</a>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(1, 1fr); width: 8%; background-color: rgb(54, 60, 72); border-radius: 33px;">
+                    <p id="Clock" style="font-size: 21px; font-family: Roboto, sans-serif; margin: 0.1%; text-align:center; color:white;"></p>
+                    <p id="Date" style="font-size: 21px; font-family: Roboto, sans-serif; margin: 0.1%; color:white;"></p>
+                </div>
+            </div>
+        </nav>
+       
+        
+
+    </header>
+    <div class="column">
+    <main>
+        @RenderBody()
+    </main>
+    </div>
+</body>
+</html>
+<script src="js/new_code.js"></script>
+<script src="js/site.js"></script>

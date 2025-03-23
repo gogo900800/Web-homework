@@ -1,0 +1,168 @@
+﻿@page
+@using System.Data;
+@model new_site.Pages.Registration_formModel
+@{
+    Layout = "_LayoutA";
+}
+<style>
+    input  {
+        display: flex;
+        justify-content: space-around;
+        padding: 1.4%;
+        width: 80%;
+        margin: auto;
+        background-color: rgb(240, 242, 245);
+        border:none;
+    }
+    input::placeholder {
+        font-size: 14px;
+        color: rgb(74, 74, 74);
+        font-family: Roboto, sans-serif;
+    }
+    .span{
+        font-size: 14px;
+        color: rgb(74, 74, 74);
+    }
+    option{
+        font-size: 14px;
+        color: rgb(74, 74, 74);
+    }
+    label{
+        margin:0.8%;
+        font-size: 16px;
+        font-family: Roboto, sans-serif;
+    }
+
+    input[type="checkbox"] 
+    {
+        margin:25%;
+    }
+</style>
+
+
+<div class="main" style="background-color: rgb(227, 227, 227); margin: 0; width:100%;">
+@if (!string.IsNullOrEmpty(Model.errorMessage))
+{
+    <div class="alert alert-danger">
+        @Model.errorMessage
+    </div>
+}
+
+    <form name="regform" method="post" onreset="resetForm()" style="width:40%; display: flex; flex-direction:column; justify-content: space-around; margin:auto; border: 1px double grey; padding:0.5%; margin-top:4.5%; background-color:rgb(255, 255, 255);">
+        <div class="title-container" style="border-color: rgb(212, 182, 106)">
+            <h1 class="title" style="color:black;">Create An account</h1>
+        </div>
+        <div style="margin-top:8%;"  class="column">
+            <input type="text" asp-for="user.firstName" id="reg_firstName" style="" maxlength="25" placeholder="First Name" autocomplete="on" oninput="checkfirstName()"/>
+            <br />
+            <span class="text-danger" id="reg_errorfirstName"></span>
+        </div>
+
+        <div class="column">
+            <input type="text" asp-for="user.lastName" id="reg_lastName" style="" maxlength="25" placeholder="Second Name" autocomplete="on" oninput="checkLastName()"/>
+            <br />
+            <span class="text-danger" id="reg_errorlastName"></span>
+        </div>
+
+        <div class="column">
+            <input type="text" asp-for="user.Email" id="reg_Email" style="" maxlength="50" placeholder="Email" autocomplete="on" oninput="checkEmail()"/>
+            <span class="text-danger" id="reg_errorEmail"></span>
+        </div>
+
+        <div class="column">
+            <br />
+            <input type="password" id="reg_password" minlength="8" maxlength="20" placeholder="Password" oninput="checkPassword()"/>
+            <span class="text-danger" id="reg_errorPassword"></span>
+            <br />
+        </div>
+
+        <div class="column">
+            <input type="password" id="reg_verifyPassword" minlength="8" maxlength="20" placeholder="Verify Password" oninput="verifyPassword()" />
+            <span class="text-danger" id="reg_errorVerifyPassword"></span>
+            <br />
+        </div>
+
+        <div class="input_like" style="margin-bottom:2.4%; padding-top:0.9%; padding-bottom:0.9%;">
+            <div style="display:flex; margin:auto;">
+                <select style="border-radius:0; border: 1px solid black;"id="reg_prefix">
+                    <option>
+                        <h3>054</h3>
+                    </option>
+                    <option>
+                        <h3>055</h3>
+                    </option>
+                    <option>
+                        <h3>056</h3>
+                    </option>
+                </select>
+                <span class="text-danger" id="reg_errorPrefix"></span>
+                <div>
+                    <input style="border: 1px solid black; background: white;" type="text" id="phone" placeholder="888-42-29" />
+                </div>
+                <span class="text-danger" id="reg_errorPhone"></span>
+            </div>
+        </div>
+
+        <div  style="align-items:center;">
+            <div class="input_like" style="padding-top:1.2%; padding-bottom:1.2%;">
+                <span class="span"style="font-size:16px">Male</span>
+                <input asp-for="user.Gender" name="Gender" type="radio" value="Male" id="reg_gender1" style=""/>
+                <span class="span" style="font-size:16px">Female</span>
+                <input  asp-for="user.Gender" name="Gender" type="radio" value="Female" id="reg_gender2" style="" />
+                <span class="span" style="font-size:16px">Other</span>
+                <input  asp-for="user.Gender" name="Gender" type="radio" value="Other" id="reg_gender3" style="" checked />
+            </div>
+        </div>
+        <br />
+        <div class="column">
+            <input type="text" name="birthYear" id="birthYear" placeholder="Year Born">
+            <span class="errors" id="reg_errorbirthYear"></span>
+            <br>
+        </div>
+        
+    <div class="column">
+        <input type="text" asp-for="user.ID" id="reg_ID" style="" maxlength="25" placeholder="ID" autocomplete="on" oninput="checklastName()">
+        <br />
+        <span class="text-danger" id="reg_errorID"></span>
+    </div>
+
+    <div style="border:1px solid; width: 65%; margin:auto; padding:1%; margin-top:3%;">
+            <div style="display:flex; justify-content:space-evenly; margin:auto; margin-top:2%; margin-bottom:2%; width:60%;border-bottom: 1px solid rgb(200, 200, 255);">
+                <label class="title" style="font-size: 20px; padding-bottom:0.7%; ">Answer Truthfully</label>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; padding:3%;">
+                <br />
+                <br />
+                <div class="column" style="margin-bottom: 2%">
+                    <label>Have you ever eaten sugar?</label>
+                    <label>Did you like it?</label>
+                    <label style="display: inline-block; white-space: nowrap;">Would you like to know interesting things about sugar?</label>
+                    <label>None of the following is true about me</label>
+                </div>
+
+                <div class="column" style="margin-bottom: 2%">
+                    <br />
+                    <br />
+                    <input style="" type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox" id="loser">
+                </div>
+            </div>
+
+
+    </div>
+
+        <br />
+        <button style="font-size:30px; border-radius: 10px; margin: auto; display: flex; justify-content: center;" type="submit" value="Register">Register</button>
+    </form>
+</div>
+<script src="js/site.js" asp-append-version="true"></script>
+
+<script>
+        document.getElementById("loser").addEventListener("change", function() {
+        if (this.checked) {
+            window.location.href = "https://crisis.solari-inc.org/";
+        }});
+</script>

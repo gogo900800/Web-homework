@@ -1,0 +1,81 @@
+﻿@page
+@using System.Data;
+@using new_site;
+@using new_site.Model;
+@using new_site.Pages;
+@using new_site.DataModel;
+@model new_site.Pages.ShowModel
+@{
+    ViewData["Title"] = "Users";
+}
+
+<style>
+    td {
+        padding: 7px;
+        text-align:center;
+        font-size: 18px;
+    }
+    th{
+        text-align: center;
+        font-size:22px;
+        font-family:'Agency FB';
+        padding: 12px;
+    }
+
+
+</style>
+
+<div style="background-color:antiquewhite; border: solid 2px; margin:auto; padding:15px; width: 1400px;">
+    <table class="table table-striped shadow table-sm">
+        <thead class="table-info">
+            <tr>
+                @foreach (string displayColumn in @Model.DisplayColumns)
+                {
+                    if (displayColumn.Equals("prefix"))
+                    {
+                        continue;
+                    }
+                    else
+
+                    {
+                    <th style="border:solid 1px;" scope="col"> @displayColumn</th>
+                    }
+                }
+            </tr>
+        </thead>
+
+        <tbody class="table-group-divider">
+            @foreach (DataRow row in Model.DataTableUsers.Rows)
+            {
+                <tr>
+                    @foreach (DataColumn column in Model.DataTableUsers.Columns)
+                        if (column.ColumnName.Equals("prefix"))
+                        {
+                            continue;
+                        }
+                        else if (column.ColumnName.Equals("phone_number"))
+                        {
+                            <td>@row["prefix"]-@row[column.ColumnName]</td>
+                        }
+                        else
+                        {
+                            <td>@row[column.ColumnName]</td>
+                        }
+                </tr>
+            }
+        </tbody>
+
+    <tfoot class="table-group-divider">
+        <tr>
+            <td class="table-info" scope="row" colspan="100" style="text-align:center">
+                Total @Model.DataTableUsers.Rows.Count users
+            </td>
+        </tr>
+        <tr>
+            <td class="table-info" scope="row" colspan="100" style="text-align:center">
+                @Model.sqlQuery
+            </td>
+        </tr>
+    </tfoot>
+</table>
+</div>

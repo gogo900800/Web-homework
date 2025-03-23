@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+    <table>
+        <thead>
+            <tr>
+                @foreach (string displayColumn in @Model.displayColumns)
+                <th scope="col"> @displayColumn</th>
+            </tr>
+        </thead>
+
+
+        <tbody>
+            @foreach (DataRow row in Model.DataTableUsers.Rows)
+            <tr>
+                @foreach (DataColumn column in Model.DataTableUsers.Columns)
+                {
+                <td>@row[displayColumn]</td>
+                }
+            </tr>
+        </tbody>
+    </table>
+
+
+
+</body>
+</html>

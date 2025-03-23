@@ -1,0 +1,62 @@
+﻿@page
+@model new_site.Pages.extraModel
+@{
+}
+<style>
+    img{
+        width: 500px;
+        height: 360px;
+    }
+    p{
+        font-size: 30px;
+    }
+
+
+    .container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        text-align: center;
+    }
+
+    .item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+        .item img {
+            width: 600px;
+            height: 400px;
+        }
+</style>
+
+
+
+
+<div class="container">
+    <div class="item">
+        <img src="~/img/car1.webp" />
+        <p>Photo 1</p>
+    </div>
+    <div class="item">
+        <img src="~/img/car2.webp" />
+        <p>Photo 2</p>
+    </div>
+    <div class="item">
+        <img src="~/img/car3.webp" />
+        <p>Photo 3</p>
+    </div>
+    <div class="item">
+        <img src="~/img/car4.webp" />
+        <p>Photo 4</p>
+    </div>
+    <div class="item">
+        <img src="~/img/car5.webp" />
+        <p>Photo 5</p>
+    </div>
+    <div class="item">
+        <img src="~/img/car6.webp" />
+        <p>Photo 6</p>
+    </div>
+</div>

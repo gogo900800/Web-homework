@@ -1,0 +1,55 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Home_work\\Web_Home_Work\\new_site1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{57BAFDCB-0A47-4729-800B-02F482576190}|new_site\\new_site.csproj|c:\\home_work\\web_home_work\\new_site1\\new_site\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{57BAFDCB-0A47-4729-800B-02F482576190}|new_site\\new_site.csproj|solutionrelative:new_site\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{57BAFDCB-0A47-4729-800B-02F482576190}|new_site\\new_site.csproj|c:\\home_work\\web_home_work\\new_site1\\new_site\\pages\\registration_form.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{57BAFDCB-0A47-4729-800B-02F482576190}|new_site\\new_site.csproj|solutionrelative:new_site\\pages\\registration_form.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "site.js",
+              "DocumentMoniker": "C:\\Home_work\\Web_Home_Work\\new_site1\\new_site\\wwwroot\\js\\site.js",
+              "RelativeDocumentMoniker": "new_site\\wwwroot\\js\\site.js",
+              "ToolTip": "C:\\Home_work\\Web_Home_Work\\new_site1\\new_site\\wwwroot\\js\\site.js*",
+              "RelativeToolTip": "new_site\\wwwroot\\js\\site.js*",
+              "ViewState": "AgIAABsAAAAAAAAAAAAgwJIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-03-23T17:26:12.163Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Registration_form.cshtml",
+              "DocumentMoniker": "C:\\Home_work\\Web_Home_Work\\new_site1\\new_site\\Pages\\Registration_form.cshtml",
+              "RelativeDocumentMoniker": "new_site\\Pages\\Registration_form.cshtml",
+              "ToolTip": "C:\\Home_work\\Web_Home_Work\\new_site1\\new_site\\Pages\\Registration_form.cshtml",
+              "RelativeToolTip": "new_site\\Pages\\Registration_form.cshtml",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAEsAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-22T14:26:24.573Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

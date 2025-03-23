@@ -1,0 +1,68 @@
+﻿@page
+@model new_site.Pages.calcModel
+@{
+}
+
+<style>
+    body{
+        background-color:darkcyan;
+    }
+    input{
+        padding: 7px;
+        font-size:20px;
+    }
+
+</style>
+
+
+
+<div style="width:1000px; margin:auto; border: solid 2px; background-color:cadetblue; padding:10px;">
+    <input type="text" size="20" id="operand1" disabled /> +
+    <input type="text" size="20" id="operand2" disabled /> =
+    <input type="text" size="20" id="result" />
+    <p id="message" style="font-size:25px;"></p>
+    <br />
+    <br />
+    <input type="text" size="20" id="operand3" disabled /> -
+    <input type="text" size="20" id="operand4" disabled /> =
+    <input type="text" size="20" id="result1" />
+    <p id="message1" style="font-size:25px;"></p>
+    <br />
+    <br />
+    <input type="text" size="20" id="operand5" disabled /> /
+    <input type="text" size="20" id="operand6" disabled /> =
+    <input type="text" size="20" id="result2" />
+    <p id="message2" style="font-size:25px;"></p>
+    <br />
+    <br />
+    <input type="text" size="20" id="operand7" disabled /> *
+    <input type="text" size="20" id="operand8" disabled /> =
+    <input type="text" size="20" id="result3" />
+    <p id="message3" style="font-size:25px;"></p>
+    <br />
+    <br />
+    <input type="text" size="20" id="operand9" disabled /> %
+    <input type="text" size="20" id="operand10" disabled /> =
+    <input type="text" size="20" id="result4" />
+    <p id="message4" style="font-size:25px;"></p>
+    <br />
+    <br />
+
+    <div style="text-align:center">
+    <input style="" type="button" value="Send" onclick="checkAnswer()" />
+    </div>
+    <br />
+    <div style="text-align:center">
+    <label style="font-size:40px;">Score: </label>
+    </div>
+    <div style="text-align:center">
+        <span id="score" style="font-size:40px;"></span>
+    </div>
+</div>
+
+
+
+
+
+
+<script src="js/new_code.js" asp-append-version="true"></script>
