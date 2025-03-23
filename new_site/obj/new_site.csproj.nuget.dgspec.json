@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Home_work\\Web_Home_Work\\new_site1\\new_site\\new_site.csproj": {}
+    "C:\\Home_work\\Web_Home_Work\\new_site1\\Web-homework\\new_site\\new_site.csproj": {}
   },
   "projects": {
-    "C:\\Home_work\\Web_Home_Work\\new_site1\\new_site\\new_site.csproj": {
+    "C:\\Home_work\\Web_Home_Work\\new_site1\\Web-homework\\new_site\\new_site.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Home_work\\Web_Home_Work\\new_site1\\new_site\\new_site.csproj",
+        "projectUniqueName": "C:\\Home_work\\Web_Home_Work\\new_site1\\Web-homework\\new_site\\new_site.csproj",
         "projectName": "new_site",
-        "projectPath": "C:\\Home_work\\Web_Home_Work\\new_site1\\new_site\\new_site.csproj",
+        "projectPath": "C:\\Home_work\\Web_Home_Work\\new_site1\\Web-homework\\new_site\\new_site.csproj",
         "packagesPath": "C:\\Users\\GOLAN\\.nuget\\packages\\",
-        "outputPath": "C:\\Home_work\\Web_Home_Work\\new_site1\\new_site\\obj\\",
+        "outputPath": "C:\\Home_work\\Web_Home_Work\\new_site1\\Web-homework\\new_site\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

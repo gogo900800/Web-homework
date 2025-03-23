@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lfIDuRv8Zo4=",
+  "dgSpecHash": "9oomwfQmsJY=",
   "success": true,
-  "projectFilePath": "C:\\Home_work\\Web_Home_Work\\new_site1\\new_site\\new_site.csproj",
+  "projectFilePath": "C:\\Home_work\\Web_Home_Work\\new_site1\\Web-homework\\new_site\\new_site.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\GOLAN\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\GOLAN\\.nuget\\packages\\azure.identity\\1.11.3\\azure.identity.1.11.3.nupkg.sha512",
