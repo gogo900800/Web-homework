@@ -9,6 +9,7 @@ namespace new_site.Pages
     {
         [BindProperty]
         public string errorMessage { get; set; }
+        [BindProperty]
         public User? user { get; set; }
         public string st { get; set; }
         public void OnGet()

@@ -22,6 +22,6 @@ namespace new_site.Pages
 
             return Page();
         }
-        public string[] DisplayColumns { get; set; } = { "ID", "full name", "first name", "last name", "prefix", "phone number", "email", "year born", "gender", "City", "pw" };
+        public string[] DisplayColumns { get; set; } = { "ID", "first name", "last name", "prefix", "phone number", "email", "year born", "gender", "City", "pw" };
     }
 }
