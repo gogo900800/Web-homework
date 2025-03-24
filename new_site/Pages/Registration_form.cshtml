@@ -1,6 +1,7 @@
 ﻿@page
 @using System.Data;
 @model new_site.Pages.Registration_formModel
+@using Microsoft.AspNetCore.Http
 @{
     Layout = "_LayoutA";
 }
@@ -72,7 +73,7 @@
         <div class="column">
 
             <br />
-            <input type="password" id="reg_password" minlength="8" maxlength="20" placeholder="Password" oninput="checkPassword()"/>
+            <input type="password" asp-for="user.Password" id="reg_password" minlength="8" maxlength="20" placeholder="Password" oninput="checkPassword()"/>
             <span class="text-danger" id="reg_errorPassword"></span>
             <br />
         </div>

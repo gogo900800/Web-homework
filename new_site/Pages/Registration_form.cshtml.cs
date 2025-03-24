@@ -7,9 +7,9 @@ namespace new_site.Pages
     
     public class Registration_formModel : PageModel
     {
-        
         [BindProperty]
         public string errorMessage { get; set; }
+        [BindProperty]
         public User? user { get; set; }
         public string st { get; set; }
         public void OnGet()

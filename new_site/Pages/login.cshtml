@@ -1,0 +1,31 @@
+﻿@page
+@model new_site.Pages.loginModel
+@using Microsoft.AspNetCore.Http
+@{
+}
+<style>
+    input {
+        display: flex;
+        justify-content: space-around;
+        padding: 1.4%;
+        width: 80%;
+        margin: auto;
+        background-color: rgb(240, 242, 245);
+    }
+</style>
+<form style="margin:auto;">
+     <div style="margin-top:8%;"  class="column">
+            <input type="text" id="" style="" maxlength="25" placeholder="" autocomplete="on" oninput=""/>
+            <br />
+            <span class="text-danger" id=""></span>
+        </div>
+
+    <div style="margin-top:8%;" class="column">
+        <input type="text" id="" style="" maxlength="25" placeholder="" autocomplete="on" oninput="" />
+        <br />
+        <span class="text-danger" id=""></span>
+    </div>
+
+    <button style="font-size:30px; border-radius: 10px; margin: auto; display: flex; justify-content: center;" type="submit" value="Login">Login</button>
+    @Html.AntiForgeryToken()
+</form>
