@@ -24,7 +24,7 @@ namespace new_site.Pages
             {
                 return Page();
             }
-            return RedirectToPage("/Home");
+            return RedirectToPage("/Home_page");
         }
     }
 }
