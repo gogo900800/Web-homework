@@ -33,13 +33,13 @@ function displayDate()
     }
     document.getElementById("Date").innerHTML = `${day}/${month}/${year}`;
 }
+
 window.onload = function () {
     displayTime();
     displayDate();
     setInterval(displayTime, 1000);
 
     let Name;
-    name
     document.getElementById("name").innerHTML = Name;
 
 

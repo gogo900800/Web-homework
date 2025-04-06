@@ -99,7 +99,7 @@
                 </select>
                 <span class="text-danger" id="reg_errorPrefix"></span>
                 <div>
-                    <input style="border: 1px solid black; background: white;" type="text" id="phone" placeholder="888-42-29" />
+                    <input style="border: 1px solid black; background: white;" type="text" id="reg_phone" placeholder="888-42-29" />
                 </div>
                 <span class="text-danger" id="reg_errorPhone"></span>
             </div>
@@ -122,11 +122,7 @@
             <br>
         </div>
         
-    <div class="column">
-        <input type="text" asp-for="user.ID" id="reg_ID" style="" maxlength="25" placeholder="ID" autocomplete="on" oninput="checklastName()">
-        <br />
-        <span class="text-danger" id="reg_errorID"></span>
-    </div>
+
 
     <div style="border:1px solid; width: 65%; margin:auto; padding:1%; margin-top:3%;">
             <div style="display:flex; justify-content:space-evenly; margin:auto; margin-top:2%; margin-bottom:2%; width:60%;border-bottom: 1px solid rgb(200, 200, 255);">
