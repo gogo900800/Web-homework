@@ -31,9 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="App Data\usersDB.mdf">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
+    <Folder Include="App Data\" />
   </ItemGroup>
 
 </Project>

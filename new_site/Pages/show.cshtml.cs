@@ -19,7 +19,8 @@ namespace new_site.Pages
         public IActionResult OnGet()
         {
             sqlQuery = $"SELECT * FROM {Utils.DB_USERS_TABLE}";
-
+            DBHelper1 dBHelper = new DBHelper1();
+            DataTableUsers = dBHelper.RetrieveTable(sqlQuery,"usersTBL");
             return Page();
         }
         public string[] DisplayColumns { get; set; } = { "ID", "first name", "last name", "prefix", "phone number", "email", "year born", "gender", "City", "pw" };
