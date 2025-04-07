@@ -1,5 +1,6 @@
 ﻿@page
 @model new_site.Pages.loginModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using Microsoft.AspNetCore.Http
 @{
     Layout = "_LayoutA";
@@ -17,26 +18,28 @@
 </style>
 
 <div class="main" style="background-color: rgb(227, 227, 227); margin: 0; width:100%;">
-    <form style="width:40%; display: flex; flex-direction:column; justify-content: space-around; margin:auto; border: 1px double grey; padding:0.5%; margin-top:4.5%; background-color:rgb(255, 255, 255);">
+    <form name="regform" method="post" onreset="resetForm()" style="width:40%; display: flex; flex-direction:column; justify-content: space-around; margin:auto; border: 1px double grey; padding:0.5%; margin-top:4.5%; margin-bottom:0.6%; background-color:rgb(255, 255, 255);">
+        <partial name="_ValidationScriptsPartial" />
+
         <div class="title-container" style="border-color: rgb(212, 182, 106)">
             <h1 class="title" style="color:black;">Login</h1>
         </div>
 
-        <div style="margin-top:8%;"  class="column">
-                <input type="text" id="" style="" maxlength="25" placeholder="" autocomplete="on" oninput=""/>
-                <br />
-                <span class="text-danger" id=""></span>
-            </div>
-
         <div style="margin-top:8%;" class="column">
-            <input type="text" id="" style="" maxlength="25" placeholder="" autocomplete="on" oninput="" />
-
-
-            <br />
-            <span class="text-danger" id=""></span>
+            <input asp-for="login_email" class="form-control" />
+            <span asp-validation-for="login_email" class="text-danger"></span>
         </div>
 
-        <button style="font-size:30px; border-radius: 10px; margin: auto; display: flex; justify-content: center;" type="submit" value="Login">Login</button>
+        <div style="margin-top:8%;" class="column">
+            <input asp-for="login_password" type="password" class="form-control" />
+            <span asp-validation-for="login_password" class="text-danger"></span>
+        </div>
+
+
+        <button style="font-size:30px; border-radius: 10px; margin: auto; display: flex; justify-content: center; margin-top:4%" type="submit" value="Login">Login</button>
         @Html.AntiForgeryToken()
     </form>
+    <div style="width:40%; display: flex; flex-direction:column; justify-content: space-around; margin:auto; border: 1px double grey; padding:0.5%; padding-bottom:2%; padding-top:2%; background-color:rgb(255, 255, 255);">
+        <h1 style="font-size:20px; margin:auto;">Don't have an account? <a style="color:rgb(37, 147, 242); font-size:20px;" href="\Registration_form">Sign up</a></h1>
+    </div>
 </div>

@@ -18,7 +18,6 @@ namespace new_site.Pages
         
         public IActionResult OnPost()
         {
-            
             DBHelper1 dB = new DBHelper1();
             int numRowsAffected = dB.Insert(user, "usersTBL");
             if (numRowsAffected != 1)

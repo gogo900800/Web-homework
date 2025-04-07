@@ -60,7 +60,7 @@
         </div>
 
         <div class="column">
-            <input type="text" asp-for="user.lastName" id="reg_lastName" style="" maxlength="25" placeholder="Second Name" autocomplete="on" oninput="checkLastName()"/>
+            <input type="text" asp-for="user.lastName" id="reg_lastName" style="" maxlength="25" placeholder="Last Name" autocomplete="on" oninput="checkLastName()"/>
             <br />
             <span class="text-danger" id="reg_errorlastName"></span>
         </div>
@@ -79,6 +79,7 @@
         </div>
 
         <div class="column">
+
             <input type="password" id="reg_verifyPassword" minlength="8" maxlength="20" placeholder="Verify Password" oninput="verifyPassword()" />
             <span class="text-danger" id="reg_errorVerifyPassword"></span>
             <br />
@@ -86,20 +87,20 @@
 
         <div class="input_like" style="margin-bottom:2.4%; padding-top:0.9%; padding-bottom:0.9%;">
             <div style="display:flex; margin:auto;">
-                <select style="border-radius:0; border: 1px solid black;"id="reg_prefix">
+                <select asp-for="user.PrefixID" style="border-radius:0; border: 1px solid black;" id="reg_prefix">
                     <option>
-                        <h3>054</h3>
+                        <h3 asp-for="user.PrefixID">054</h3>
                     </option>
                     <option>
-                        <h3>055</h3>
+                        <h3 asp-for="user.PrefixID">055</h3>
                     </option>
                     <option>
-                        <h3>056</h3>
+                        <h3 asp-for="user.PrefixID">056</h3>
                     </option>
                 </select>
                 <span class="text-danger" id="reg_errorPrefix"></span>
                 <div>
-                    <input style="border: 1px solid black; background: white;" type="text" id="reg_phone" placeholder="888-42-29" />
+                    <input type="number" asp-for="user.Phone" style="border: 1px solid black; background: white;" type="text" id="reg_phone" placeholder="888-42-29" />
                 </div>
                 <span class="text-danger" id="reg_errorPhone"></span>
             </div>
@@ -107,17 +108,17 @@
 
         <div  style="align-items:center;">
             <div class="input_like" style="padding-top:1.2%; padding-bottom:1.2%;">
-                <span class="span"style="font-size:16px">Male</span>
-                <input asp-for="user.Gender" name="Gender" type="radio" value="Male" id="reg_gender1" style=""/>
+                <span class="span" style="font-size:16px">Male</span>
+                <input type="radio" asp-for="user.Gender" name="Gender" value="Male" id="reg_gender1" style="" />
                 <span class="span" style="font-size:16px">Female</span>
-                <input  asp-for="user.Gender" name="Gender" type="radio" value="Female" id="reg_gender2" style="" />
+                <input type="radio" asp-for="user.Gender" name="Gender" value="Female" id="reg_gender2" style="" />
                 <span class="span" style="font-size:16px">Other</span>
-                <input  asp-for="user.Gender" name="Gender" type="radio" value="Other" id="reg_gender3" style="" checked />
+                <input type="radio" asp-for="user.Gender" name="Gender" value="Other" id="reg_gender3" style=""/>
             </div>
         </div>
         <br />
         <div class="column">
-            <input type="text" name="birthYear" id="birthYear" placeholder="Year Born">
+            <input type="text" asp-for="user.birthYear" name="birthYear" id="birthYear" minlength="4" maxlength="4" placeholder="Year Born">
             <span class="errors" id="reg_errorbirthYear"></span>
             <br>
         </div>

@@ -39,9 +39,6 @@ window.onload = function () {
     displayDate();
     setInterval(displayTime, 1000);
 
-    let Name;
-    document.getElementById("name").innerHTML = Name;
-
 
 
     //this is from the calculator excersise:

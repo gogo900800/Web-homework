@@ -5,7 +5,8 @@
     justify-content: center; 
     align-items: center;
 }
-    .flex_container > div {
+    .flex_container > div:not(.no-style) {
+        display:flex;
         padding: 0.35%;
         border-radius: 25px;
         width: 13%;
@@ -79,5 +80,22 @@ h3 {
     color: rgb(74, 74, 74);
     font-family: Roboto, sans-serif;
 }
+.no-style {
+    display: flex;
+    padding: 0.35%;
+    width: 9%;
+    text-align: center;
+    font-size: 20px;
+    border: 2px solid;
+    background-color: rgb(232, 210, 170);
+    margin: 0.35%;
+    flex-direction: row;
+    justify-content: center;
+    height: 100%;
+}
+    .no-style > * {
+        margin-right: 5px;
+    }
+
     
 
