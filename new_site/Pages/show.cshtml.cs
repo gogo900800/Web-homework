@@ -23,6 +23,6 @@ namespace new_site.Pages
             DataTableUsers = dBHelper.RetrieveTable(sqlQuery,"usersTBL");
             return Page();
         }
-        public string[] DisplayColumns { get; set; } = { "ID", "first name", "last name", "prefix", "phone number", "email", "year born", "gender", "City", "pw" };
+        public string[] DisplayColumns { get; set; } = { "ID", "First Name", "Last Name", "Prefix", "Phone Number", "Year Born", "Gender", "Email", "City", "Password" };
     }
 }

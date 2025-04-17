@@ -13,7 +13,6 @@ namespace new_site.Pages
 
         [BindProperty]
         public string? login_password { get; set; }
-
         public void OnGet()
         {
         }
@@ -27,6 +26,8 @@ namespace new_site.Pages
             {
                 return Page();
             }
+            VisitorService visitorService = ServiceProviderAccessor.ServiceProvider.GetService<VisitorService>();
+            visitorService.IncrementVisitorCount();
             HttpContext.Session.SetString("first_name", userTable.Rows[0]["first_name"].ToString());
             return RedirectToPage("/Home_page");
         }

@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace WebApplication1.Pages
+namespace new_site.Pages
 {
     public class Home_pageModel : PageModel
     {
         public void OnGet()
-        {
+        { 
         }
     }
 }

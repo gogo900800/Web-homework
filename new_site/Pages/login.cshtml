@@ -4,7 +4,9 @@
 @using Microsoft.AspNetCore.Http
 @{
     Layout = "_LayoutA";
+    VisitorService visitorService = ServiceProviderAccessor.ServiceProvider.GetService<VisitorService>();
 }
+<span style="font-size:40px; color:white;">Total Logined Visitors:@visitorService.GetVisitorCount()</span>
 <style>
     input {
         display: flex;
@@ -26,12 +28,12 @@
         </div>
 
         <div style="margin-top:8%;" class="column">
-            <input asp-for="login_email" class="form-control" />
+            <input asp-for="login_email" />
             <span asp-validation-for="login_email" class="text-danger"></span>
         </div>
 
         <div style="margin-top:8%;" class="column">
-            <input asp-for="login_password" type="password" class="form-control" />
+            <input asp-for="login_password" type="password"/>
             <span asp-validation-for="login_password" class="text-danger"></span>
         </div>
 
@@ -40,6 +42,6 @@
         @Html.AntiForgeryToken()
     </form>
     <div style="width:40%; display: flex; flex-direction:column; justify-content: space-around; margin:auto; border: 1px double grey; padding:0.5%; padding-bottom:2%; padding-top:2%; background-color:rgb(255, 255, 255);">
-        <h1 style="font-size:20px; margin:auto;">Don't have an account? <a style="color:rgb(37, 147, 242); font-size:20px;" href="\Registration_form">Sign up</a></h1>
+        <h1 style="font-size:19px; margin:auto; font-family: Roboto, sans-serif;">Don't have an account? <a style="color:rgb(37, 147, 242); font-size:20px;" href="\Registration_form">Sign Up</a></h1>
     </div>
 </div>

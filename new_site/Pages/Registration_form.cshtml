@@ -33,11 +33,6 @@
         font-size: 16px;
         font-family: Roboto, sans-serif;
     }
-
-    input[type="checkbox"] 
-    {
-        margin:25%;
-    }
 </style>
 
 
@@ -122,36 +117,41 @@
             <span class="errors" id="reg_errorbirthYear"></span>
             <br>
         </div>
-        
 
 
-    <div style="border:1px solid; width: 65%; margin:auto; padding:1%; margin-top:3%;">
-            <div style="display:flex; justify-content:space-evenly; margin:auto; margin-top:2%; margin-bottom:2%; width:60%;border-bottom: 1px solid rgb(200, 200, 255);">
-                <label class="title" style="font-size: 20px; padding-bottom:0.7%; ">Answer Truthfully</label>
+
+        <div style="border:1px solid; width: 70%; margin:auto; padding:1%; margin-top:3.5%;">
+
+            <div style="display:flex; justify-content:space-evenly; margin:auto; margin-top:2%; margin-bottom:2%; width:60%; border-bottom: 1px solid rgb(200, 200, 255);">
+                <label class="title" style="font-size: 22px; padding-bottom:0.7%;">Answer Truthfully</label>
             </div>
 
-            <div style="display:flex; justify-content:space-between; padding:3%;">
-                <br />
-                <br />
-                <div class="column" style="margin-bottom: 2%">
-                    <label>Have you ever eaten sugar?</label>
-                    <label>Did you like it?</label>
-                    <label style="display: inline-block; white-space: nowrap;">Would you like to know interesting things about sugar?</label>
-                    <label>None of the following is true about me</label>
+            <div style="display:flex; flex-direction: column; padding:2%; gap: 10px; margin-top: 4%;">
+
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <div style="width: 80%;"><label>Have you ever eaten sugar
+                        ?</label></div>
+                    <input type="checkbox" style="width: auto; padding: 0; ">
                 </div>
 
-                <div class="column" style="margin-bottom: 2%">
-                    <br />
-                    <br />
-                    <input style="" type="checkbox">
-                    <input type="checkbox">
-                    <input type="checkbox">
-                    <input type="checkbox" id="loser">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <div style="width: 80%;"><label>Did you like it?</label></div>
+                    <input type="checkbox" style="width: auto; padding: 0;">
+                </div>
+
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <div style="width: 80%;"><label>Want to hear fun facts about sugar?</label></div>
+                    <input type="checkbox" style="width: auto; padding: 0; ">
+                </div>
+
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <div style="width: 80%;"><label>None of the following is true about me</label></div>
+                    <input type="checkbox" id="loser" style="width: auto; padding: 0; ">
                 </div>
             </div>
+        </div>
 
 
-    </div>
 
         <br />
         <button style="font-size:30px; border-radius: 10px; margin: auto; display: flex; justify-content: center;" type="submit" value="Register">Register</button>
