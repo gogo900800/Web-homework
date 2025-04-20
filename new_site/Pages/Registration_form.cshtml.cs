@@ -15,7 +15,6 @@ namespace new_site.Pages
         public void OnGet()
         {
         }
-        
         public IActionResult OnPost()
         {
             DBHelper1 dB = new DBHelper1();

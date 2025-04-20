@@ -141,15 +141,6 @@ function checkYearBorn() {
     document.getElementById("reg_errorbirthYear").innerHTML = "";
     return true;
 }
-function checkPassword()
-{
-    let password = Document.getElementById("reg_password").value;
-    let Capital = false;
-    foreach(i in password)
-    {
-        if(i == i.c)
-    }
-}
 function checkAnswer() {
 
     function updateMessage(elementId, isCorrect) {

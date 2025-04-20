@@ -33,7 +33,6 @@ namespace new_site.DataModel
     public class DBHelper1
     {
         private string conString;
-
         public DBHelper1()
         {
 
@@ -141,17 +140,16 @@ namespace new_site.DataModel
 
             // בניית השורה להוספה
             DataRow dr = ds.Tables[table].NewRow();
-            dr["Email"] = user.Email;
-            //dr["Password"] = user.Password;
-            //dr["full_name"] = user.FirstName;
-            dr["firstName"] = user.firstName;
-            dr["LastName"] = user.lastName;
-            dr["ID"] = user.ID;
-            //dr["Phone"] = user.Phone;
-            //dr["CityID"] = user.CityID;
+            dr["email"] = user.Email;
+            dr["password"] = user.Password;
+            dr["first_name"] = user.firstName;
+            dr["last_name"] = user.lastName;
+            dr["prefix"] = user.PrefixID;
+            dr["phone"] = user.Phone;
+            dr["city"] = user.City;
             //dr["ISR_ID"] = user.ISR_ID;
-            dr["Gender"] = user.Gender;
-            //dr["YearOfBirth"] = user.YearOfBirth;
+            dr["gender"] = user.Gender;
+            dr["birth_year"] = user.birthYear;
 
             ds.Tables[table].Rows.Add(dr);
 
@@ -171,15 +169,15 @@ namespace new_site.DataModel
             // בניית פקודת SQL
             string SQLStr = $"INSERT INTO UsersTbl VALUES (";
             SQLStr += $"'{user.Email}', ";
-            //SQLStr += $"'{user.Password}', ";
+            SQLStr += $"'{user.Password}', ";
             SQLStr += $"'{user.firstName}', ";
             SQLStr += $"'{user.lastName}', ";
-            SQLStr += $" {user.ID}, ";
-            //SQLStr += $"'{user.Phone}', ";
-            //SQLStr += $" {user.CityID}, ";
+            SQLStr += $" {user.PrefixID}, ";
+            SQLStr += $"'{user.Phone}', ";
+            SQLStr += $" {user.City}, ";
             //SQLStr += $"'{user.ISR_ID}', ";
             SQLStr += $"'{user.Gender}', ";
-            //SQLStr += $"'{user.YearOfBirth}', ";
+            SQLStr += $"'{user.birthYear}', ";
             //SQLStr += $"'{user.SecretQuestion}', ";
             //SQLStr += $"'{user.SecretAnswer}');";
 
@@ -223,28 +221,60 @@ namespace new_site.DataModel
 
         public int Update(User user, string table)
         {
-            string SQL = $"UPDATE {table} " +
-                $"SET Email ='{user.Email}', " +
-                //$"Password = '{user.Password}', " +
-                $"FirstName = '{user.firstName}', " +
-                $"LastName = '{user.lastName}', " +
-                $"ID = {user.ID}, " +
-                //$"Phone = '{user.Phone}', " +
-                //$"CityID = {user.CityID}, " +
-                //$"ISR_ID = '{user.ISR_ID}', " +
-                $"Gender = '{user.Gender}', " +
-                //$"Car1 = '{user.Car1}', " +
-                //$"Car2 = '{user.Car2}', " +
-                //$"Car4 = '{user.Car4}', " +
-                //$"YearOfBirth = '{user.YearOfBirth}', " +
-                //$"Birthday = '{user.Birthday:MM-dd-yyyy HH:mm:ss}' " +
-                //$"SecretQuestion = '{user.SecretQuestion}', " +
-                //$"SecretAnswer = '{user.SecretAnswer}' " +
-                $"WHERE UserId = {user.ID} ";
+            int id1 = user.ID;
+            Console.WriteLine(user.firstName + "   yesyesyes");
+            string SQL = $"UPDATE {table} SET" +
+                $" email ='{user.Email}', " +
+                $"password = '{user.Password}', " +
+                $"first_name = '{user.firstName}', " +
+                $"last_name = '{user.lastName}', " +
+                $"prefix = {user.PrefixID}, " +
+                $"phone = '{user.Phone}', " +
+                $"City = '{user.City}', " +
+                $"gender = '{user.Gender}', " +
+                $"birth_year = {user.birthYear} " +
+                $"WHERE Id = {id1} ";
             // TBD add the other fields !!!
             int numRowsEffected = ExecuteNonQuery(SQL);
-            return numRowsEffected;
+            if (numRowsEffected == 0)
+            {
+                Console.WriteLine("No rows were updated.");
+                return -1;
+            }
+            else
+            {
+                Console.WriteLine($"{numRowsEffected} rows were updated.");
+                return numRowsEffected;
+            }
+
         }
+
+        public User GetUserById(int id)
+        {
+            string sqlQuery = $"SELECT * FROM {Utils.DB_USERS_TABLE} WHERE Id = {id}";
+            DataTable userTable = RetrieveTable(sqlQuery, "usersTBL");
+
+            if (userTable.Rows.Count == 1)
+            {
+                User user = new User();
+                user.ID = Convert.ToInt32(userTable.Rows[0]["Id"]);
+                user.firstName = userTable.Rows[0]["first_name"].ToString();
+                user.lastName = userTable.Rows[0]["last_name"].ToString();
+                user.Email = userTable.Rows[0]["email"].ToString();
+                user.Password = userTable.Rows[0]["password"].ToString();
+                user.PrefixID = userTable.Rows[0]["prefix"].ToString();
+                user.Phone = userTable.Rows[0]["phone"].ToString();
+                user.birthYear = Convert.ToInt32(userTable.Rows[0]["birth_year"]);
+                user.Gender = userTable.Rows[0]["gender"].ToString();
+                // תוסיפו שדות בהתאם לאתר שלכם
+                return user;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
 
         public int UpdateAdmin(int userId, bool isAdmin)
         {
@@ -279,7 +309,7 @@ namespace new_site.DataModel
             SqlConnection con = new SqlConnection(conString);
 
             // בניית פקודת SQL
-            string SQLStr = $"SELECT * FROM {table} WHERE Id = {user.ID}";
+            string SQLStr = $"SELECT * FROM {table} WHERE Id = {user.Email}";
             SqlCommand cmd = new SqlCommand(SQLStr, con);
 
             // בניית DataSet
@@ -298,17 +328,17 @@ namespace new_site.DataModel
             DataRow dr = ds.Tables[table].Rows[0]; //Get the only row available
 
             // עדכון השורה
-            dr["Email"] = user.Email;
-            //dr["Password"] = user.Password;
-            dr["FirstName"] = user.firstName;
-            dr["LastName"] = user.lastName;
-            //dr["PrefixID"] = user.PrefixID;
-            //dr["Phone"] = user.Phone;
-            //dr["CityID"] = user.CityID;
+            dr["email"] = user.Email;
+            dr["password"] = user.Password;
+            dr["first_name"] = user.firstName;
+            dr["last_name"] = user.lastName;
+            dr["prefix"] = user.PrefixID;
+            dr["phone"] = user.Phone;
+            dr["City"] = user.City;
             //dr["ISR_ID"] = user.ISR_ID;
-            dr["Gender"] = user.Gender;
+            dr["gender"] = user.Gender;
             //dr["Birthday"] = user.Birthday.ToString();
-            //dr["YearOfBirth"] = user.YearOfBirth;
+            dr["birth_year"] = user.birthYear;
 
             //dr["SecretQuestion"] = user.SecretQuestion;
             //dr["SecretAnswer"] = user.SecretAnswer;

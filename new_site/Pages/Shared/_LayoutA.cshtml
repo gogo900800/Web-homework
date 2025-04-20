@@ -1,11 +1,14 @@
 ﻿<!DOCTYPE html>
+@using new_site.Model
+@{
+    var userName = Context.Request.Cookies["name"];
+}
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title >@ViewData["Title"]Sugar</title>
     <link rel="stylesheet" href="~/css/Style.css" asp-append-version="true" />
-
 
 
 </head>
@@ -22,22 +25,37 @@
                     <a href="/Home_page">Home page</a>
                 </div>
                 <div class="no-style">
-                    @if (Context.Session.GetString("first_name") != null)
+                    @if (Context.Session.GetString("firstName") != null)
                     {
-                        <span>Hello, @Context.Session.GetString("first_name")!</span>
+                        <span>Hello, @Context.Session.GetString("firstName")!</span>
+                    }
+                    else if (userName != null)
+                    {
+                        <span>Hello, @userName!</span>
                     }
                     else
                     {
                         <span>Hello, Guest!</span>
                     }
-
                 </div>
-                 @if (Context.Session.GetString("first_name") == null)
-                    {
-                        <div style="width: 8%; background-color: rgb(66, 130, 91); border-radius: 33px;">
-                                <a style="font-family: Roboto, sans-serif; margin: 0.1%; text-align:center; color:rgb(209, 246, 232);" href="/login">Login</a>
-                        </div>
-                    }
+                @if (Context.Session.GetString("firstName") != null)
+                {
+                    <div style="width: 8%; background-color: rgb(53, 73, 120); border-radius: 33px;">
+                        <a style="font-family: Roboto, sans-serif; margin: 0.1%; text-align:center; color:rgb(209, 246, 232);" href="/Update">Update</a>
+                    </div>
+                }
+                else if (userName != null)
+                {
+                    <div style="width: 8%; background-color: rgb(53, 73, 120); border-radius: 33px;">
+                        <a style="font-family: Roboto, sans-serif; margin: 0.1%; text-align:center; color:rgb(209, 246, 232);" href="/Update">Update</a>
+                    </div>
+                }
+                else
+                {
+                    <div style="width: 8%; background-color: rgb(66, 130, 91); border-radius: 33px;">
+                        <a style="font-family: Roboto, sans-serif; margin: 0.1%; text-align:center; color:rgb(209, 246, 232);" href="/login">Login</a>
+                    </div>
+                }
             </div>
         </nav>
        
@@ -51,6 +69,9 @@
     </div>
     <script>
         window.onload = function () {
+
+            localStorage.setItem("USerName", "Alice");
+
             const nameSpan = document.getElementById("name");
             if (nameSpan) {
                 nameSpan.textContent = "@Context.Session.GetString("first_name")";
