@@ -1,0 +1,122 @@
+﻿@page
+@model new_site.Pages.GalleryModel
+@{
+    Layout = "_LayoutA";
+}
+<style>
+    img {
+        width: 95%;
+        height: 95%;
+        object-fit: cover;
+        margin:0px;
+    }
+
+    @@keyframes glow-once {
+        0% { 
+            box-shadow: 0 0 0px gold;
+        }
+
+        50% {
+            box-shadow: 0 0 25px 10px gold;
+        }
+
+        100% {
+            box-shadow: 0 0 0px gold;
+        }
+    }
+
+
+    #main_pic.glow {
+        animation: glow-once 0.5s ease-in-out;
+    }
+
+</style>
+<img id="404" src="~/IMG/funny.jpg" style="width:0.1px;"/>
+<div style="display: grid; grid-template-columns: repeat(4, 1fr); width: 27%; margin:auto; grid-gap:5px; border: 2px solid white; margin-top:6%;">
+    <img id="pic1" src="\IMG\Alpha.webp">
+    <img id="pic2" src="\IMG\BlackGoat.webp">
+    <img id="pic3" src="\IMG\Cat.webp">
+    <img id="pic4" src="\IMG\Child13.webp">
+    <img id="pic5" src="\IMG\Geck.webp">
+
+    <img id="main_pic" style="grid-row: span 2; grid-column: span 2; border: 5px solid yellow; height: 360px;">
+
+    <img id="pic6" src="\IMG\Mantis.webp">
+    <img id="pic7" src="\IMG\MantisGod.webp">
+    <img id="pic8" src="\IMG\Squirrel.webp">
+    <img id="pic9" src="\IMG\Stinkbug.webp">
+    <img id="pic10" src="\IMG\StoatTalking.webp">
+    <img id="pic11" src="\IMG\StrangeLarva.webp">
+    <img id="pic12" src="\IMG\WolfCub.webp">
+</div>
+
+<script>
+    var mainPic = document.getElementById("main_pic");
+    var pic1 = document.getElementById("pic1");
+    var pic2 = document.getElementById("pic2");
+    var pic3 = document.getElementById("pic3");
+    var pic4 = document.getElementById("pic4");
+    var pic5 = document.getElementById("pic5");
+    var pic6 = document.getElementById("pic6");
+    var pic7 = document.getElementById("pic7");
+    var pic8 = document.getElementById("pic8");
+    var pic9 = document.getElementById("pic9");
+    var pic10 = document.getElementById("pic10");
+    var pic11 = document.getElementById("pic11");
+    var pic12 = document.getElementById("pic12");
+    var pic404 = document.getElementById("404");
+
+    function swapImage(src) {
+        mainPic.classList.remove("glow");
+        void mainPic.offsetWidth;
+        mainPic.src = src;
+        mainPic.classList.add("glow");
+    }
+
+    swapImage(pic1.src);
+
+    pic1.onmouseover = function () {
+        swapImage(pic1.src);
+    }
+    pic2.onmouseover = function () {
+        swapImage(pic2.src);
+    }
+    pic3.onmouseover = function () {
+        swapImage(pic3.src);
+    }
+    pic4.onmouseover = function () {
+        swapImage(pic4.src);
+    }
+    pic5.onmouseover = function () {
+        swapImage(pic5.src);
+    }
+    pic6.onmouseover = function () {
+        swapImage(pic6.src);
+    }
+    pic7.onmouseover = function () {
+        swapImage(pic7.src);
+    }
+    pic8.onmouseover = function () {
+        swapImage(pic8.src);
+    }
+    pic9.onmouseover = function () {
+        swapImage(pic9.src);
+    }
+    pic10.onmouseover = function () {
+        swapImage(pic10.src);
+    }
+    pic11.onmouseover = function () {
+        swapImage(pic11.src);
+    }
+    pic12.onmouseover = function () {
+        swapImage(pic12.src);
+    };
+    
+    const pics = [pic1,pic2,pic3,pic4,pic5,pic6,pic7,pic8,pic9,pic10,pic11,pic12];
+
+    pics.forEach(pic => {
+        pic.onmouseout = function () {
+            swapImage(pic404.src);
+        };
+    });
+</script>
