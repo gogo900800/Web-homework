@@ -40,28 +40,26 @@
                 </div>
                 @if (Context.Session.GetString("firstName") != null)
                 {
-                    <div style="width: 8%; background-color: rgb(53, 73, 120); border-radius: 33px;">
+                    <div style="width: 8%; background-color: rgb(53, 73, 120); border-radius: 5px;">
                         <a style="font-family: Roboto, sans-serif; margin: 0.1%; text-align:center; color:rgb(209, 246, 232);" href="/Update">Update</a>
                     </div>
                 }
                 else if (userName != null)
                 {
-                    <div style="width: 8%; background-color: rgb(53, 73, 120); border-radius: 33px;">
+                    <div style="width: 8%; background-color: rgb(53, 73, 120); border-radius: 5px;">
                         <a style="font-family: Roboto, sans-serif; margin: 0.1%; text-align:center; color:rgb(209, 246, 232);" href="/Update">Update</a>
                     </div>
                 }
                 else
                 {
-                    <div style="width: 8%; background-color: rgb(66, 130, 91); border-radius: 33px;">
+                    <div style="width: 8%; background-color: rgb(66, 130, 91); border-radius: 5px;">
                         <a style="font-family: Roboto, sans-serif; margin: 0.1%; text-align:center; color:rgb(209, 246, 232);" href="/login">Login</a>
                     </div>
                 }
             </div>
         </nav>
-       
-        
-
     </header>
+
     <div class="column">
     <main>
         @RenderBody()
@@ -79,6 +77,49 @@
         }
     </script>
 
+
+    <footer style="width: 100%; color: white; font-family: Roboto, sans-serif; padding: 0; background-color: rgb(47, 51, 61); margin-top:4%;">
+
+        <div style="text-align: center; padding: 1% 0; color: white;">
+            <h4 style="font-size: 20px; margin-bottom: 6px; color:white;">Join the Sweet Side!</h4>
+            <p style="margin-bottom: 1%; font-size: 14px; color:white;">Sign up and make slaves free again!</p>
+            <a href="/Registration_form" style="background-color: rgb(37, 147, 242);  color: white; padding: 8px 16px; border-radius: 4px; text-decoration: none; font-weight: bold; font-size: 17px;">
+                Sign Up
+            </a>
+        </div>
+
+        <div style="width: 80%; height: 1px; background-color: rgba(255, 255, 255, 0.2); margin: 15px"></div>
+
+        <div style="text-align: center; max-width: 600px; margin: 15px auto 8px; padding: 0 3%; color: white;">
+            <h4 style="font-size: 18px; margin-bottom: 6px;">About SweetInfo</h4>
+        </div>
+
+        <div style="text-align: center;">
+            <ul style="list-style: none; padding: 0; margin: 0; display: inline-flex; gap: 15px;">
+                <li><a href="/Home_page" style="color: white; text-decoration: none; font-size: 14px;">Home</a></li>
+                <li><a href="/Recipes" style="color: white; text-decoration: none; font-size: 14px;">Recipes</a></li>
+                <li><a href="/Articles" style="color: white; text-decoration: none; font-size: 14px;">Articles</a></li>
+            </ul>
+        </div>
+
+        <div style="width: 80%; height: 1px; background-color: rgba(255, 255, 255, 0.2); margin: 10px"></div>
+
+        <div style="text-align: center; font-size: 12px; color: gray; padding-bottom: 1.4%;">
+            <p style="color: grey; font-size:20px;">&copy; 2025 SweetInfo</p>
+            <p style="margin: 0;">
+                <a href="/Privacy" style="color: gray; text-decoration: none; font-size:20px;">Privacy</a> |
+                <a href="/Terms" style="color: gray; text-decoration: none; font-size:20px;">Terms</a>
+            </p>
+        </div>
+    </footer>
+
+
+
+
+
+
+
+    
 </body>
 </html>
 <script src="js/new_code.js"></script>
