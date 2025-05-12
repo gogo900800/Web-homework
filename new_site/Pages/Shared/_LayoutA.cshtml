@@ -26,16 +26,20 @@
                 </div>
                 <div class="no-style">
                     @if (Context.Session.GetString("firstName") != null)
-                    {
+
+                        Context.Session.SetString(Utils.KEY_USER_NAME, Context.Session.GetString("firstName"))
                         <span>Hello, @Context.Session.GetString("firstName")!</span>
+                        Context.Session.SetString()
                     }
                     else if (userName != null)
                     {
+                        Context.Session.SetString(Utils.KEY_USER_NAME, @userName)
                         <span>Hello, @userName!</span>
                     }
                     else
                     {
-                        <span>Hello, Guest!</span>
+                        Context.Session.SetString(Utils.KEY_USER_NAME,Utils.KEY_USERNAME_GUEST)
+                        <span>Hello, (Utils.KEY_USER_NAME)!</span>
                     }
                 </div>
                 @if (Context.Session.GetString("firstName") != null)

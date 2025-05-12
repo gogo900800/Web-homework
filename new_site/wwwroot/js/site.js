@@ -141,19 +141,19 @@ function checkYearBorn() {
     document.getElementById("reg_errorbirthYear").innerHTML = "";
     return true;
 }
+
+function updateMessage(elementId, isCorrect) {
+    let img = document.createElement("img");
+    img.src = isCorrect ? "IMG/vi.webp" : "IMG/x.webp";
+    img.style.width = "30px";
+    img.style.height = "30px";
+
+    let messageElement = document.getElementById(elementId);
+    messageElement.innerHTML = "";
+    messageElement.appendChild(img);
+}
+
 function checkAnswer() {
-
-    function updateMessage(elementId, isCorrect) {
-        let img = document.createElement("img");
-        img.src = isCorrect ? "IMG/vi.webp" : "IMG/x.webp";
-        img.style.width = "30px";
-        img.style.height = "30px";
-
-        let messageElement = document.getElementById(elementId);
-        messageElement.innerHTML = "";
-        messageElement.appendChild(img);
-    }
-
     let num1 = parseInt(document.getElementById("operand1").value);
     let num2 = parseInt(document.getElementById("operand2").value);
     let result = parseInt(document.getElementById("result").value);

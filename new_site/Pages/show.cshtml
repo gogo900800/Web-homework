@@ -49,13 +49,13 @@
             {
                 <tr>
                     @foreach (DataColumn column in Model.DataTableUsers.Columns)
-                        if (column.ColumnName.Equals("Prefix"))
+                        if (column.ColumnName.Equals("prefix"))
                         {
                             continue;
                         }
-                        else if (column.ColumnName.Equals("Phone_number"))
+                        else if (column.ColumnName.Equals("phone"))
                         {
-                            <td>@row["Prefix"]-@row[column.ColumnName]</td>
+                            <td>@row["prefix"]-@row[column.ColumnName]</td>
                         }
                         else
                         {
