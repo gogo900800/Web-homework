@@ -2,6 +2,25 @@
 @using new_site.Model
 @{
     var userName = Context.Request.Cookies["name"];
+
+
+    var name = Context.Session.GetString("firstName");
+    if (name != null)
+    {
+        Context.Session.SetString(Utils.KEY_USER_NAME, name);
+    }
+    else if (userName != null)
+    {
+        Context.Session.SetString(Utils.KEY_USER_NAME, userName);
+        name = userName;
+    }
+    else
+    {
+        Context.Session.SetString(Utils.KEY_USER_NAME, Utils.KEY_ROLE_GUEST);
+        name = Utils.KEY_ROLE_GUEST;
+    }
+
+
 }
 <html>
 <head>
@@ -25,22 +44,7 @@
                     <a href="/Home_page">Home page</a>
                 </div>
                 <div class="no-style">
-                    @if (Context.Session.GetString("firstName") != null)
-
-                        Context.Session.SetString(Utils.KEY_USER_NAME, Context.Session.GetString("firstName"))
-                        <span>Hello, @Context.Session.GetString("firstName")!</span>
-                        Context.Session.SetString()
-                    }
-                    else if (userName != null)
-                    {
-                        Context.Session.SetString(Utils.KEY_USER_NAME, @userName)
-                        <span>Hello, @userName!</span>
-                    }
-                    else
-                    {
-                        Context.Session.SetString(Utils.KEY_USER_NAME,Utils.KEY_USERNAME_GUEST)
-                        <span>Hello, (Utils.KEY_USER_NAME)!</span>
-                    }
+                    <span>Hello, @name!</span>
                 </div>
                 @if (Context.Session.GetString("firstName") != null)
                 {
@@ -92,7 +96,7 @@
             </a>
         </div>
 
-        <div style="width: 80%; height: 1px; background-color: rgba(255, 255, 255, 0.2); margin: 15px"></div>
+        <div class="line"></div>
 
         <div style="text-align: center; max-width: 600px; margin: 15px auto 8px; padding: 0 3%; color: white;">
             <h4 style="font-size: 18px; margin-bottom: 6px;">About SweetInfo</h4>
@@ -106,7 +110,7 @@
             </ul>
         </div>
 
-        <div style="width: 80%; height: 1px; background-color: rgba(255, 255, 255, 0.2); margin: 10px"></div>
+        <div class="line"></div>
 
         <div style="text-align: center; font-size: 12px; color: gray; padding-bottom: 1.4%;">
             <p style="color: grey; font-size:20px;">&copy; 2025 SweetInfo</p>
