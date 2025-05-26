@@ -2,7 +2,7 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
-/*
+
 function validateRegisterForm() {
 
     let formlsOK = true;
@@ -11,32 +11,14 @@ function validateRegisterForm() {
     formlsOK = checkLastName() && formlsOK;
     formlsOK = checkPassword() && formlsOK;
     formlsOK = checkVerifyPassword() && formlsOK;
-    formlsOK = checkTZld() && formlsOK;
     formlsOK = checkPhone() && formlsOK;
     formlsOK = checkYearBorn() && formlsOK;
     return formlsOK;
 }
-*/
-function checkFirstName() {
-    return true;
-}
-function checkLastName()
-{
-    return true;
-}
 
-function checkID()
-{
-    return true;
-}
-
-function hasBadChars(text)
-{
-    const badChars = "$%^&*()-<>{}[]?";
-    for (let i = 0; i < text.length; i++)
-    {
-        if (badChars.includes(text[i]))
-        {
+function hasHebrewChars(text) {
+    for (let i = 0; i < text.length; i++) {
+        if (text[i] >= 'א' && text[i] <= 'ת') {
             return true;
         }
     }
@@ -44,16 +26,65 @@ function hasBadChars(text)
 }
 
 
-function hasHebrewChars(text)
-{
-    for (let i = 0; i < text.length; i++)
-    {
-        if (text[i] >= 'א' && text[i] <= 'ת')
-        {
-            return true;  
+function hasBadChars(text) {
+    const badChars = "$%^&*()-<>{}[]?";
+    for (let i = 0; i < text.length; i++) {
+        if (badChars.includes(text[i])) {
+            return true;
         }
     }
-    return false; 
+    return false;
+}
+
+function checkFirstName() {
+    const nameElement = document.getElementById("reg_firstName");
+    const name = nameElement.value;
+
+    for (var i = 0; i < name.length; i++)
+    {
+        for (var j = 0; j < 10; j++) {
+            if (name[i].parseInt == j) {
+                document.getElementById("reg_errorfirstName").innerHTML = "first name has badchrecters";
+                return false;
+            }
+        }  
+    }
+
+    if (hasHebrewChars(name)) {
+        document.getElementById("reg_errorName").innerHTML = "Hebrew letters are not allowed in name";
+        return false;
+    }
+    if (hasBadChars(name)) {
+        document.getElementById("reg_errorName").innerHTML = "you have one of the following charecters in your name '$%^&*()-<>{}[]?' please remove them.";
+        return false;
+    }
+
+    return true;
+}
+function checkLastName()
+{
+    const lnameElement = document.getElementById("reg_lastName");
+    const lname = lnameElement.value;
+
+    for (var i = 0; i < lname.length; i++) {
+        for (var j = 0; j < 10; j++) {
+            if (lname[i].parseInt == j) {
+                document.getElementById("reg_errorlastName").innerHTML = "last name has bad charecters";
+                return false;
+            }
+        }
+    }
+
+    if (hasHebrewChars(lname)) {
+        document.getElementById("reg_errorlastName").innerHTML = "Hebrew letters are not allowed in last name";
+        return false;
+    }
+    if (hasBadChars(lname)) {
+        document.getElementById("reg_errorlastName").innerHTML = "you have one of the following charecters in your last name '$%^&*()-<>{}[]?' please remove them.";
+        return false;
+    }
+
+    return true;
 }
 
 function checkEmail() {
@@ -64,37 +95,31 @@ function checkEmail() {
         document.getElementById("reg_errorEmail").innerHTML = "Required";
         return false;
     }
-    if (!(email.length > 6 && email.length < 50) && email.length !=0) {
+    if (!(email.length > 6 && email.length < 50) && email.length != 0) {
         document.getElementById("reg_errorEmail").innerHTML = "the email is either below 6 letters or above 50. please change that.";
         return false;
     }
-    if (email.indexOf('@') == -1) 
-    {
+    if (email.indexOf('@') == -1) {
         document.getElementById("reg_errorEmail").innerHTML = "missing a '@' in your email.";
         return false;
     }
-    if (!(email.indexOf('@') == email.lastIndexOf('@')))
-    {
+    if (!(email.indexOf('@') == email.lastIndexOf('@'))) {
         document.getElementById("reg_errorEmail").innerHTML = "you have more then one '@' in your email.";
         return false;
     }
-    if ((email.indexOf('.', email.indexOf('@')) == -1) || (email.indexOf('.', email.indexOf('@')) == email.indexOf('@')+1))
-    {
+    if ((email.indexOf('.', email.indexOf('@')) == -1) || (email.indexOf('.', email.indexOf('@')) == email.indexOf('@') + 1)) {
         document.getElementById("reg_errorEmail").innerHTML = "missing a '.' in your email. it must be after the '@', but not just after the '@'";
         return false;
     }
-    if (email.length - 1 == email.indexOf('.'))
-    {
+    if (email.length - 1 == email.indexOf('.')) {
         document.getElementById("reg_errorEmail").innerHTML = "the '.' can't be in the end of your email.";
         return false;
     }
-    if (email.indexOf('"') != -1)
-    {
+    if (email.indexOf('"') != -1) {
         document.getElementById("reg_errorEmail").innerHTML = "you have '\"' in your email. change it.";
         return false;
     }
-    if (email.indexOf('\'') != -1)
-    {
+    if (email.indexOf('\'') != -1) {
         document.getElementById("reg_errorEmail").innerHTML = "you have '\'' in your email. change it.";
         return false;
     }
@@ -102,14 +127,86 @@ function checkEmail() {
         document.getElementById("reg_errorEmail").innerHTML = "Hebrew letters are not allowed in email address";
         return false;
     }
-    if (hasBadChars(email))
-    {
+    if (hasBadChars(email)) {
         document.getElementById("reg_errorEmail").innerHTML = "you have one of the following charecters in your email '$%^&*()-<>{}[]?' please change it.";
         return false;
     }
     document.getElementById("reg_errorEmail").innerHTML = "";
     return true;
 }
+
+function checkPassword()
+{
+    const passwordElement = document.getElementById("reg_password");
+    const pw = passwordElement.value;
+
+    if (pw.length < 8) {
+        document.getElementById("reg_errorPassword").innerHTML = "Password too short";
+        return false;
+    }
+    if (hasHebrewChars(pw)) {
+        document.getElementById("reg_errorPassword").innerHTML = "Hebrew letters are not allowed in password";
+        return false;
+    }
+}
+
+function checkVerfiyPassword()
+{
+    const passwordElement = document.getElementById("reg_password");
+    const pw = passwordElement.value;
+
+    const verpasswordElement = document.getElementById("reg_verifyPassword");
+    const verpw = verpasswordElement.value;
+
+    if (verpw = pw) {
+        return true;
+    }
+    else {
+        document.getElementById("reg_errorVerifyPassword").innerHTML = "the verifyed password is not the same as the password";
+        return false;
+    }
+}
+
+function CheckPrefix() {
+    const prefixElement = document.getElementById("reg_prefix");
+    const prefix = prefixElement.value;
+
+    if (prefix == null) {
+        return false;
+    }
+    return true;
+}
+
+function CheckPhone()
+{
+    const phoneElement = document.getElementById("reg_phone");
+    const phone = phoneElement.value;
+
+    if (phone.length != 7) {
+        document.getElementById("reg_errorPhone").innerHTML = "your phone number should be 7 numbers."
+        return false;
+    }
+    var OK = 0;
+    for (var i = 0; i < phone.length; i++)
+    {
+        for (var j = 0; j < phone.length; j++) {
+            if (phone[i] == j) {
+                OK = 1
+            }
+        }
+        if (OK == 1) {
+            OK = 0;
+        }
+        else {
+            document.getElementById("reg_errorPhone").innerHTML = "your phone number should be only numbers."
+            return false;
+        }
+    }
+    return true;
+}
+
+
+
 
 function checkRadioButtons()
 {
@@ -133,12 +230,13 @@ function checkRadioButtons()
 function checkYearBorn() {
     let birthYear = Document.getElementById("reg_birthYear").value;
     if (isNaN(birthYear)) {
+        document.getElementById("reg_errorbirthYear").innerHTML = "please fill out your birth year.";
         return false;
     }
-    if (parselnt(birthYear) < 1950 && birthYear+10 < dateTime.getFullYear()) {
+    if (parselnt(birthYear) < 1950 && birthYear + 10 < dateTime.getFullYear()) {
+        document.getElementById("reg_errorbirthYear").innerHTML = "no way in hell this is your birth year, please write your real birth year.";
         return false;
     }
-    document.getElementById("reg_errorbirthYear").innerHTML = "";
     return true;
 }
 
