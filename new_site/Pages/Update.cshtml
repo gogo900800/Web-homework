@@ -6,40 +6,6 @@
     Layout = "_LayoutA";
 }
 <style>
-    input {
-        display: flex;
-        justify-content: space-around;
-        padding: 1.4%;
-        width: 80%;
-        margin: auto;
-        background-color: rgb(240, 242, 245);
-        border: none;
-    }
-
-        input::placeholder {
-            font-size: 14px;
-            color: rgb(74, 74, 74);
-            font-family: Roboto, sans-serif;
-        }
-
-    .span {
-        font-size: 14px;
-        color: rgb(74, 74, 74);
-        font-family: Roboto, sans-serif;
-    }
-
-    option {
-        font-size: 14px;
-        color: rgb(74, 74, 74);
-        padding: 0;
-        margin: 0;
-    }
-
-    label {
-        margin: 0.8%;
-        font-size: 16px;
-        font-family: Roboto, sans-serif;
-    }
 </style>
 
 
@@ -51,7 +17,7 @@
         </div>
     }
 
-    <form name="regform" method="post" onreset="resetForm()" style="width:40%; display: flex; flex-direction:column; justify-content: space-around; margin:auto; border: 1px double grey; padding:0.5%; margin-top:4.5%; background-color:rgb(255, 255, 255);">
+    <form name="regform" method="post" onreset="resetForm()" class="account_header">
         <div class="title-container" style="border-color: rgb(212, 182, 106)">
             <h1 class="title" style="color:black;">Update Your Account</h1>
         </div>
@@ -76,17 +42,17 @@
             <br />
         </div>
 
-        <div class="input_like" style="margin-bottom:2.4%; padding: 0; display: flex; align-items: center; background-color: transparent; height: 40px;">
-            <select asp-for="user.PrefixID"
-                    style="width: 10%; height: 100%; border: none; background-color: rgb(240, 242, 245); padding: 0; margin: 0; color: rgb(74, 74, 74); font-family: Roboto, sans-serif; font-size: 14px;">
-                <option value="054">054</option>
-                <option value="055">055</option>
-                <option value="056">056</option>
+        <div class="input_like" style="height: 100%">
+            <select asp-for="user.PrefixID" class="input_field" style="width: 15%; ">
+                @foreach (string i in Model.Prefix)
+                {
+                    <option value="@i">@i</option>
+                }
             </select>
 
-            <div style="width: 5%;"></div>
+            <div style="width: 3%;"></div>
 
-            <input type="text" asp-for="user.Phone" id="reg_phone" placeholder="888-42-29" style="padding-top:0; padding-bottom:0; width: 100%; height: 100%; border: none; background-color: rgb(240, 242, 245); margin: 0;" />
+            <input type="text" asp-for="user.Phone" id="reg_phone" class="input_field" style="" placeholder="888-42-29" />
         </div>
 
         <span class="text-danger" id="reg_errorPrefix"></span>

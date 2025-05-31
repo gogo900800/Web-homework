@@ -6,36 +6,7 @@
     Layout = "_LayoutA";
 }
 <style>
-    input  {
-        display: flex;
-        justify-content: space-around;
-        padding: 1.4%;
-        width: 80%;
-        margin: auto;
-        background-color: rgb(240, 242, 245);
-        border:none;
-    }
-    input::placeholder {
-        font-size: 14px;
-        color: rgb(74, 74, 74);
-        font-family: Roboto, sans-serif;
-    }
-    .span{
-        font-size: 14px;
-        color: rgb(74, 74, 74);
-        font-family: Roboto, sans-serif;
-    }
-    option{
-        font-size: 14px;
-        color: rgb(74, 74, 74);
-        padding:0;
-        margin:0;
-    }
-    label{
-        margin:0.8%;
-        font-size: 16px;
-        font-family: Roboto, sans-serif;
-    }
+
 </style>
 
 
@@ -47,7 +18,7 @@
     </div>
 }
 
-    <form asp-page="/Registration_form" name="regform" onsubmit="validateRegisterForm()" method="post" onreset="resetForm()" style="width:40%; display: flex; flex-direction:column; justify-content: space-around; margin:auto; border: 1px double grey; padding:0.5%; margin-top:4.5%; background-color:rgb(255, 255, 255);">
+    <form asp-page="/Registration_form" name="regform" onsubmit="validateRegisterForm()" method="post" onreset="resetForm()" class="account_header">
         <div class="title-container" style="border-color: rgb(212, 182, 106)">
             <h1 class="title" style="color:black;">Create An account</h1>
         </div>
@@ -83,42 +54,47 @@
             <br />
         </div>
 
-        <div class="input_like" style="margin-bottom:2.4%; padding: 0; display: flex; align-items: center; background-color: transparent; height: 40px;">
-            <select asp-for="user.PrefixID"
-                    style="width: 10%; height: 100%; border: none; background-color: rgb(240, 242, 245); padding: 0; margin: 0; color: rgb(74, 74, 74); font-family: Roboto, sans-serif; font-size: 14px;">
-                <option id="reg_prefix" value="054">054</option>
-                <option id="reg_prefix" value="055">055</option>
-                <option id="reg_prefix"  value="056">056</option>
+        <div class="input_like" style="">
+            <select asp-for="user.PrefixID" class="input_field" style="width: 15%;">
+                @foreach (string i in Model.Prefix)
+                {
+                    <option value="@i">@i</option>
+                }
             </select>
 
-            <div style="width: 5%;"></div>
+            <div style="width: 3%;"></div>
 
-            <input type="text" asp-for="user.Phone" id="reg_phone" placeholder="888-42-29" style="padding-top:0; padding-bottom:0; width: 100%; height: 100%; border: none; background-color: rgb(240, 242, 245); margin: 0;" />
+            <input type="text" asp-for="user.Phone" id="reg_phone" class="input_field" style="" placeholder="888-42-29" />
         </div>
+
 
         <span class="text-danger" id="reg_errorPrefix"></span>
         <span class="text-danger" id="reg_errorPhone"></span>
 
-        <div  style="align-items:center;">
-            <div class="input_like" style="padding-top:1.2%; padding-bottom:1.2%;">
+        <div class="input_like" style="padding-top:1.4%; padding-bottom:1.4%; align-items:center; margin-top:2.4%; background-color: rgb(240, 242, 245);">
                 <span class="span" style="">Male</span>
                 <input type="radio" asp-for="user.Gender" value="Male" id="reg_gender1" style="" />
                 <span class="span" style="">Female</span>
                 <input type="radio" asp-for="user.Gender" value="Female" id="reg_gender2" style="" />
                 <span class="span" style="">Other</span>
                 <input type="radio" asp-for="user.Gender" value="Other" id="reg_gender3" style=""/>
-            </div>
         </div>
         <br />
-        <div class="column">
-            <input type="text" asp-for="user.birthYear" id="birthYear" minlength="4" maxlength="4" placeholder="Year Born">
-            <span class="errors" id="reg_errorbirthYear"></span>
-            <br>
+
+        <div class="input_like">
+        <select asp-for="user.birthYear" id="reg_yearborn" class="input_field" style="">
+                @foreach (int i in Model.BuildDropDownFieldsRange(1940,2026))
+                {
+                <option style="" value="@i">@i</option>
+                }
+        </select>
+        <span class="errors" id="reg_erroryearborn"></span>
         </div>
 
+        <div class="line" style="background-color: lightslategray; margin-top: 4%"></div>
 
 
-        <div style="border:1px solid; width: 70%; margin:auto; padding:1%; margin-top:3.5%;">
+        <div style="border:1px solid; width: 70%; margin:auto; padding:1%; margin-top:4%;">
 
             <div style="display:flex; justify-content:space-evenly; margin:auto; margin-top:2%; margin-bottom:2%; width:60%; border-bottom: 1px solid rgb(200, 200, 255);">
                 <label class="title" style="font-size: 22px; padding-bottom:0.7%;">Answer Truthfully</label>

@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using new_site.DataModel;
-using new_site.Model;
 
 namespace new_site.Pages
 {
@@ -13,6 +12,7 @@ namespace new_site.Pages
         [BindProperty]
         public User? user { get; set; }
         public string st { get; set; }
+        public string[] Prefix = { "050", "051", "052", "053", "054", "055", "056", "057", "058", "059", "02", "03", "04", "08", "09", };
         public void OnGet()
         {
             string? userId = Request.Cookies["ID"];
@@ -25,6 +25,7 @@ namespace new_site.Pages
         }
 
         public IActionResult OnPost()
+
         {
             string? userId = Request.Cookies["ID"];
             if (string.IsNullOrEmpty(userId))

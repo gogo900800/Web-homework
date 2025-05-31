@@ -3,7 +3,6 @@ using new_site.DataModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using new_site;
-using new_site.Model;
 using new_site.Pages;
 using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using System.Collections.Generic;

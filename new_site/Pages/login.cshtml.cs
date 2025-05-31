@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using new_site.DataModel;
-using new_site.Model;
 using System.Data;
 
 namespace new_site.Pages

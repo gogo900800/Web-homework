@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System.Data;
 using Microsoft.Data.SqlClient;
-using new_site.Model;
 using new_site.Pages;
 using System.Reflection;
 using System.Data.Common;

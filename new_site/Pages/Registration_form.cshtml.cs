@@ -12,6 +12,17 @@ namespace new_site.Pages
         [BindProperty]
         public User? user { get; set; }
         public string st { get; set; }
+        public string[] Prefix = {"050", "051", "052", "053", "054", "055", "056", "057", "058", "059","02", "03", "04", "08", "09",};
+
+        public int[] BuildDropDownFieldsRange(int minValue, int maxValue)
+        {
+            int[] str = new int[maxValue-minValue];
+            for (int i = minValue; i < maxValue; i++)
+            {
+                str[i - minValue] = i;
+            }
+            return str;
+        }
         public void OnGet()
         {
         }

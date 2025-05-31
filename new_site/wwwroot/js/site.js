@@ -44,7 +44,7 @@ function checkFirstName() {
     {
         for (var j = 0; j < 10; j++) {
             if (name[i].parseInt == j) {
-                document.getElementById("reg_errorfirstName").innerHTML = "first name has badchrecters";
+                document.getElementById("reg_errorfirstName").innerHTML = "first name has bad chrecters";
                 return false;
             }
         }  

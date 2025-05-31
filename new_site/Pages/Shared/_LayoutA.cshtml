@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-@using new_site.Model
+@using new_site.DataModel
 @{
     var userName = Context.Request.Cookies["name"];
 
@@ -33,42 +33,53 @@
 </head>
 <body>
 
-    <header style="margin:0; width:100%;">
-        <nav>
-            <div class="flex_container" style="background-color: rgb(59, 62, 72)">
-                <div style="display: grid; grid-template-columns: repeat(1, 1fr); width: 8%; background-color: rgb(54, 60, 72); border-radius: 33px;">
-                    <p id="Clock" style="font-size: 21px; font-family: Roboto, sans-serif; margin: 0.1%; text-align:center; color:white;"></p>
-                    <p id="Date" style="font-size: 21px; font-family: Roboto, sans-serif; margin: 0.1%; color:white;"></p>
+    <header style="margin:auto; width:100%; margin-top:1.2%;">
+
+
+        <div class="flex_container">
+
+            <div style="width:20%;position: fixed; left:5px;">
+                <div class="flex_container_div" style="display: grid; grid-template-columns: repeat(1, 1fr); background-color: rgb(54, 60, 72);">
+                    <p id="Clock" class="time"></p>
+                    <p id="Date" class="time"></p>
                 </div>
-                <div style="font-size: 35px; margin: auto; width: 14%; border-radius: 33px;">
+            </div>
+
+                <div class="flex_container_div" style="font-size: 35px; margin: auto; width: 14%; border-radius: 33px;">
                     <a href="/Home_page">Home page</a>
                 </div>
-                <div class="no-style">
+              
+
+            <div style="display:flex; width:20%;position: absolute; right:5px;">
+                <div class="no-style" >
                     <span>Hello, @name!</span>
                 </div>
+
                 @if (Context.Session.GetString("firstName") != null)
                 {
-                    <div style="width: 8%; background-color: rgb(53, 73, 120); border-radius: 5px;">
-                        <a style="font-family: Roboto, sans-serif; margin: 0.1%; text-align:center; color:rgb(209, 246, 232);" href="/Update">Update</a>
+                    <div class="flex_container_div" style="background-color: rgb(53, 73, 120);">
+                        <a style="" class="account"  href="/Update">Update</a>
                     </div>
                 }
                 else if (userName != null)
                 {
-                    <div style="width: 8%; background-color: rgb(53, 73, 120); border-radius: 5px;">
-                        <a style="font-family: Roboto, sans-serif; margin: 0.1%; text-align:center; color:rgb(209, 246, 232);" href="/Update">Update</a>
+                    <div class="flex_container_div" style="background-color: rgb(53, 73, 120);">
+                        <a style="" class="account" href="/Update">Update</a>
                     </div>
                 }
                 else
                 {
-                    <div style="width: 8%; background-color: rgb(66, 130, 91); border-radius: 5px;">
-                        <a style="font-family: Roboto, sans-serif; margin: 0.1%; text-align:center; color:rgb(209, 246, 232);" href="/login">Login</a>
+                    <div class="flex_container_div" style="background-color: rgb(66, 130, 91);">
+                        <a style="" class="account" href="/login">Login</a>
                     </div>
                 }
             </div>
-        </nav>
+
+        </div>
+           
     </header>
 
-    <div class="column">
+    <div class="column" style="margin-top:1.2%;">
     <main>
         @RenderBody()
     </main>
@@ -89,7 +100,7 @@
     <footer style="width: 100%; color: white; font-family: Roboto, sans-serif; padding: 0; background-color: rgb(47, 51, 61); margin-top:4%;">
 
         <div style="text-align: center; padding: 1% 0; color: white;">
-            <h4 style="font-size: 20px; margin-bottom: 6px; color:white;">Join the Sweet Side!</h4>
+            <h3 style="font-size: 20px; margin-bottom: 6px; color:white;">Join the Sweet Side!</h3>
             <p style="margin-bottom: 1%; font-size: 14px; color:white;">Sign up and make slaves free again!</p>
             <a href="/Registration_form" style="background-color: rgb(37, 147, 242);  color: white; padding: 8px 16px; border-radius: 4px; text-decoration: none; font-weight: bold; font-size: 17px;">
                 Sign Up
@@ -104,9 +115,9 @@
 
         <div style="text-align: center;">
             <ul style="list-style: none; padding: 0; margin: 0; display: inline-flex; gap: 15px;">
-                <li><a href="/Home_page" style="color: white; text-decoration: none; font-size: 14px;">Home</a></li>
-                <li><a href="/Recipes" style="color: white; text-decoration: none; font-size: 14px;">Recipes</a></li>
-                <li><a href="/Articles" style="color: white; text-decoration: none; font-size: 14px;">Articles</a></li>
+                <li><a href="/Home_page" class="footer_option">Home</a></li>
+                <li><a href="/Recipes" class="footer_option">Recipes</a></li>
+                <li><a href="/Articles" class="footer_option">Articles</a></li>
             </ul>
         </div>
 

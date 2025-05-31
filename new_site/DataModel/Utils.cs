@@ -1,9 +1,8 @@
 ﻿using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Data;
-using new_site.Model;
 using new_site.DataModel;
 
-namespace new_site.Model
+namespace new_site.DataModel
 {
     public class Utils
     {
