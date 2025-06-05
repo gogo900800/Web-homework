@@ -9,6 +9,8 @@ namespace new_site.DataModel
         public const string DB_FILE = "tableDB.mdf";
         public const string DB_USERS_TABLE = "usersTBL";
         public const string CONFIG_DB_FILE = "new_siteDB";
+
+
         public const string VALUE_USERNAME_GUEST = "Guest";
         public const string KEY_USER_NAME = "userName";
         public const string KEY_ERROR_MESSAGE = "errorMessage";

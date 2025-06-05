@@ -265,7 +265,6 @@ namespace new_site.DataModel
                 user.Phone = userTable.Rows[0]["phone"].ToString();
                 user.birthYear = Convert.ToInt32(userTable.Rows[0]["birth_year"]);
                 user.Gender = userTable.Rows[0]["gender"].ToString();
-                // תוסיפו שדות בהתאם לאתר שלכם
                 return user;
             }
             else
@@ -273,6 +272,20 @@ namespace new_site.DataModel
                 return null;
             }
         }
+
+        public User? GetAdminById(int id)
+        {
+            string sqlQuery1 = $"SELECT * FROM AdminTBL WHERE Id = {id}";
+            DataTable adminTable = RetrieveTable(sqlQuery1, "AdminTBL");
+
+            if (adminTable.Rows.Count == 1)
+            {
+                return GetUserById(id);
+            }
+
+            return null;
+        }
+
 
 
         public int UpdateAdmin(int userId, bool isAdmin)

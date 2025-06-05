@@ -28,18 +28,33 @@ namespace new_site.Pages
         }
         public IActionResult OnPost()
         {
-            DBHelper1 dB = new DBHelper1();
-            int numRowsAffected = dB.Insert(user, "usersTBL");
-            if (numRowsAffected != 1)
+            if((user == null ||
+                string.IsNullOrWhiteSpace(user.firstName) ||
+                string.IsNullOrWhiteSpace(user.Password) ||
+                string.IsNullOrWhiteSpace(user.Email)) ||
+                string.IsNullOrWhiteSpace(user.PrefixID) ||
+                string.IsNullOrWhiteSpace(user.Phone) ||
+                string.IsNullOrWhiteSpace(user.Gender) ||
+                ((user.birthYear) == null))
             {
-                errorMessage = "This email is already registered";
+                errorMessage = "All fields must be filled in.";
                 return Page();
             }
+
+            DBHelper1 dB = new DBHelper1();
+            int numRowsAffected = dB.Insert(user, "usersTBL");
+
+            if (numRowsAffected != 1)
+            {
+                errorMessage = "An error occurred during registration.";
+                return Page();
+            }
+
             return RedirectToPage("/Home_page");
-            
         }
-        
+
+
 
     }
-    
+
 }

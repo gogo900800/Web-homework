@@ -18,44 +18,44 @@
     </div>
 }
 
-    <form asp-page="/Registration_form" name="regform" onsubmit="validateRegisterForm()" method="post" onreset="resetForm()" class="account_header">
+    <form asp-page="/Registration_form" name="regform" onsubmit="return validateRegisterForm()" method="post" onreset="resetForm()" class="account_header">
         <div class="title-container" style="border-color: rgb(212, 182, 106)">
             <h1 class="title" style="color:black;">Create An account</h1>
         </div>
         <div style="margin-top:9%;"  class="column">
-            <input type="text" asp-for="user.firstName" id="reg_firstName" style="" maxlength="25" placeholder="First Name" autocomplete="on" oninput="checkfirstName()"/>
-            <br />
-            <span class="text-danger" id="reg_errorfirstName"></span>
-        </div>
-
-        <div class="column">
-            <input type="text" asp-for="user.lastName" id="reg_lastName" style="" maxlength="25" placeholder="Last Name" autocomplete="on" oninput="checkLastName()"/>
-            <br />
-            <span class="text-danger" id="reg_errorlastName"></span>
-        </div>
-
-        <div class="column">
-            <input type="text" asp-for="user.Email" id="reg_Email" style="" maxlength="50" placeholder="Email" autocomplete="on" oninput="checkEmail()"/>
-            <span class="text-danger" id="reg_errorEmail"></span>
-        </div>
-
-        <div class="column">
-
-            <br />
-            <input type="password" asp-for="user.Password" id="reg_password" minlength="8" maxlength="20" placeholder="Password" oninput="checkPassword()"/>
-            <span class="text-danger" id="reg_errorPassword"></span>
+            <input type="text" asp-for="user.firstName" id="reg_firstName" style="" maxlength="25" placeholder="First Name" autocomplete="on" oninput="CheckFirstName()"/>
+            <span class="error" id="reg_errorfirstName"></span>
             <br />
         </div>
 
         <div class="column">
+            <input type="text" asp-for="user.lastName" id="reg_lastName" style="" maxlength="25" placeholder="Last Name" autocomplete="on" oninput="CheckLastName()"/>
+            <span class="error" id="reg_errorlastName"></span>
+            <br />
+        </div>
 
-            <input type="password" id="reg_verifyPassword" minlength="8" maxlength="20" placeholder="Verify Password" oninput="verifyPassword()" />
-            <span class="text-danger" id="reg_errorVerifyPassword"></span>
+        <div class="column">
+            <input type="text" asp-for="user.Email" id="reg_Email" style="" maxlength="50" placeholder="Email" autocomplete="on" oninput="CheckEmail()"/>
+            <span class="error" id="reg_errorEmail"></span>
+        </div>
+
+        <div class="column">
+
+            <br />
+            <input type="password" asp-for="user.Password" id="reg_password" minlength="8" maxlength="20" placeholder="Password" oninput="CheckPassword()"/>
+            <span class="error" id="reg_errorPassword"></span>
+            <br />
+        </div>
+
+        <div class="column">
+
+            <input type="password" id="reg_verifyPassword" minlength="8" maxlength="20" placeholder="Verify Password" oninput="CheckVerfiyPassword()" />
+            <span class="error" id="reg_errorVerifyPassword"></span>
             <br />
         </div>
 
         <div class="input_like" style="">
-            <select asp-for="user.PrefixID" class="input_field" style="width: 15%;">
+            <select asp-for="user.PrefixID" id="reg_prefix" class="input_field" style="width: 15%;" oninput="CheckPrefix()">
                 @foreach (string i in Model.Prefix)
                 {
                     <option value="@i">@i</option>
@@ -64,32 +64,33 @@
 
             <div style="width: 3%;"></div>
 
-            <input type="text" asp-for="user.Phone" id="reg_phone" class="input_field" style="" placeholder="888-42-29" />
+            <input type="text" asp-for="user.Phone" id="reg_phone" class="input_field" style="" placeholder="888-42-29" oninput="CheckPhone()" />
         </div>
 
 
-        <span class="text-danger" id="reg_errorPrefix"></span>
-        <span class="text-danger" id="reg_errorPhone"></span>
+        <span class="error" id="reg_errorPrefix"></span>
+        <span class="error" id="reg_errorPhone"></span>
 
         <div class="input_like" style="padding-top:1.4%; padding-bottom:1.4%; align-items:center; margin-top:2.4%; background-color: rgb(240, 242, 245);">
-                <span class="span" style="">Male</span>
+                <span class="span" style="margin-left:1.2%;">Male</span>
                 <input type="radio" asp-for="user.Gender" value="Male" id="reg_gender1" style="" />
                 <span class="span" style="">Female</span>
                 <input type="radio" asp-for="user.Gender" value="Female" id="reg_gender2" style="" />
                 <span class="span" style="">Other</span>
                 <input type="radio" asp-for="user.Gender" value="Other" id="reg_gender3" style=""/>
         </div>
+        <span class="error" id="reg_errorGender"></span>
         <br />
 
         <div class="input_like">
-        <select asp-for="user.birthYear" id="reg_yearborn" class="input_field" style="">
+            <select asp-for="user.birthYear" id="reg_birthYear" class="input_field" style="" oninput="CheckYearBorn()">
                 @foreach (int i in Model.BuildDropDownFieldsRange(1940,2026))
                 {
-                <option style="" value="@i">@i</option>
+                    <option style="" value="@i">@i</option>
                 }
         </select>
-        <span class="errors" id="reg_erroryearborn"></span>
         </div>
+        <span class="error" id="reg_errorbirthYear"></span>
 
         <div class="line" style="background-color: lightslategray; margin-top: 4%"></div>
 

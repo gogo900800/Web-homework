@@ -1,27 +1,44 @@
-﻿<!DOCTYPE html>
-@using new_site.DataModel
+﻿@using new_site.DataModel
 @{
     var userName = Context.Request.Cookies["name"];
-
-
     var name = Context.Session.GetString("firstName");
-    if (name != null)
+    var userId = Context.Request.Cookies["ID"];
+    DBHelper1 dbHelper = new DBHelper1();
+
+    if (string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(userName))
+    {
+        name = userName;
+    }
+
+    if (!string.IsNullOrEmpty(name))
     {
         Context.Session.SetString(Utils.KEY_USER_NAME, name);
-    }
-    else if (userName != null)
-    {
-        Context.Session.SetString(Utils.KEY_USER_NAME, userName);
-        name = userName;
+
+        if (!string.IsNullOrEmpty(userId) && int.TryParse(userId, out int id))
+        {
+            if (dbHelper.GetAdminById(id) != null)
+            {
+                Context.Session.SetString(Utils.KEY_ROLE, Utils.KEY_ROLE_ADMIN);
+            }
+            else
+            {
+                Context.Session.SetString(Utils.KEY_ROLE, Utils.KEY_ROLE_USER);
+            }
+        }
+        else
+        {
+            Context.Session.SetString(Utils.KEY_ROLE, Utils.KEY_ROLE_USER);
+        }
     }
     else
     {
         Context.Session.SetString(Utils.KEY_USER_NAME, Utils.KEY_ROLE_GUEST);
+        Context.Session.SetString(Utils.KEY_ROLE, Utils.KEY_ROLE_GUEST);
         name = Utils.KEY_ROLE_GUEST;
     }
-
-
 }
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -45,12 +62,12 @@
                 </div>
             </div>
 
-                <div class="flex_container_div" style="font-size: 35px; margin: auto; width: 14%; border-radius: 33px;">
+            <div class="flex_container_div" style="font-size: 1.4vw; margin: auto; width: 14%; border-radius: 2vw;">
                     <a href="/Home_page">Home page</a>
                 </div>
               
 
-            <div style="display:flex; width:20%;position: absolute; right:5px;">
+            <div style="display:flex; position: absolute; right:5px;">
                 <div class="no-style" >
                     <span>Hello, @name!</span>
                 </div>
@@ -60,11 +77,17 @@
                     <div class="flex_container_div" style="background-color: rgb(53, 73, 120);">
                         <a style="" class="account"  href="/Update">Update</a>
                     </div>
+                    <div class="flex_container_div" style="background-color: rgb(171, 10, 24)">
+                        <a style="" class="account" href="/Logout">Logout</a>
+                    </div>
                 }
                 else if (userName != null)
                 {
                     <div class="flex_container_div" style="background-color: rgb(53, 73, 120);">
                         <a style="" class="account" href="/Update">Update</a>
+                    </div>
+                    <div class="flex_container_div" style="background-color: rgb(171, 10, 24)">
+                        <a style="" class="account" href="/Logout">Logout</a>
                     </div>
                 }
                 else
@@ -100,9 +123,9 @@
     <footer style="width: 100%; color: white; font-family: Roboto, sans-serif; padding: 0; background-color: rgb(47, 51, 61); margin-top:4%;">
 
         <div style="text-align: center; padding: 1% 0; color: white;">
-            <h3 style="font-size: 20px; margin-bottom: 6px; color:white;">Join the Sweet Side!</h3>
-            <p style="margin-bottom: 1%; font-size: 14px; color:white;">Sign up and make slaves free again!</p>
-            <a href="/Registration_form" style="background-color: rgb(37, 147, 242);  color: white; padding: 8px 16px; border-radius: 4px; text-decoration: none; font-weight: bold; font-size: 17px;">
+            <h3 style="font-size: 1vw; margin-bottom: 6px; color:white;">Join the Sweet Side!</h3>
+            <p style="margin-bottom: 1%; font-size: 0.8vw; color:white;">Sign up and make slaves free again!</p>
+            <a href="/Registration_form" style="background-color: rgb(37, 147, 242);  color: white; padding: 8px 16px; border-radius: 4px; text-decoration: none; font-weight: bold; font-size: 1vw;">
                 Sign Up
             </a>
         </div>
@@ -110,7 +133,7 @@
         <div class="line"></div>
 
         <div style="text-align: center; max-width: 600px; margin: 15px auto 8px; padding: 0 3%; color: white;">
-            <h4 style="font-size: 18px; margin-bottom: 6px;">About SweetInfo</h4>
+            <h4 style="font-size: 1vw; margin-bottom: 6px;">About SweetInfo</h4>
         </div>
 
         <div style="text-align: center;">
@@ -123,11 +146,11 @@
 
         <div class="line"></div>
 
-        <div style="text-align: center; font-size: 12px; color: gray; padding-bottom: 1.4%;">
-            <p style="color: grey; font-size:20px;">&copy; 2025 SweetInfo</p>
+        <div style="text-align: center; font-size: 0.7vw; color: gray; padding-bottom: 1.4%;">
+            <p style="color: grey; font-size: 1vw;">&copy; 2025 SweetInfo</p>
             <p style="margin: 0;">
-                <a href="/Privacy" style="color: gray; text-decoration: none; font-size:20px;">Privacy</a> |
-                <a href="/Terms" style="color: gray; text-decoration: none; font-size:20px;">Terms</a>
+                <a href="/Privacy" style="color: gray; text-decoration: none; font-size: 1vw;">Privacy</a> |
+                <a href="/Terms" style="color: gray; text-decoration: none; font-size: 1vw;">Terms</a>
             </p>
         </div>
     </footer>
