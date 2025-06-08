@@ -12,7 +12,6 @@ namespace new_site.DataModel
         public string? Gender { get; set; } = string.Empty;
         public string? PrefixID { get; set; } = string.Empty;
         public string? Phone { get; set; } = string.Empty;
-        public string? City { get; set; } = string.Empty;
         [Required]
         public string? Password { get; set; } = string.Empty;
     }

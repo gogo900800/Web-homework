@@ -1,0 +1,11 @@
+﻿@page
+@model new_site.Pages.DeleteModel
+@{
+    // Razor Page setup, uses DeleteModel class as its backend
+}
+
+@if (Model.DeleteMessage != null)
+{
+    // If there is a delete message from the backend, show it to the user
+    <p>@Model.DeleteMessage</p>
+}

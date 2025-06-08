@@ -1,0 +1,41 @@
+﻿@page
+@model new_site.Pages.AdminModel
+@using new_site.DataModel
+@{
+    // Set page title
+    ViewData["Title"] = "AdminPage.";
+
+    // Use admin layout
+    Layout = "_LayoutA";
+}
+
+<div class="account_header" style="background-color:rgb(224, 224, 230);">
+    <div class="title-container" style="margin-bottom:1vw;">
+        <p class="title" style="color:black;">Hello Admin!</p>
+        @* Greeting for the admin *@
+    </div>
+
+    <p class="title" style="font-size:1.1vw; color:black; text-align:center">
+        Click the boxes to transfer into the written pages
+        @* Instructions for using the admin panel *@
+    </p>
+
+    <div class="flex_container" style="margin-top:2.5%">
+
+        @* Link to Quary_page (query page for admin operations) *@
+        <div onclick="window.location.href='/Quary_page';" class="flex_container_div Admin_link_background" style="">
+            <p class="Admin_link">Quary page</p>
+        </div>
+
+        @* Link to show table page (displays database records) *@
+        <div onclick="window.location.href='/show';" class="flex_container_div Admin_link_background" style="">
+            <p class="Admin_link"> Show table</p>
+        </div>
+
+        @* Link to TheRealSugar page (hidden/admin-only page with further info) *@
+        <div onclick="window.location.href='/TheRealSugar';" class="flex_container_div Admin_link_background" style="">
+            <p class="Admin_link">The Truth</p>
+        </div>
+
+    </div>
+</div>

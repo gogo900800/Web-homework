@@ -2,41 +2,68 @@
 @model new_site.Pages.loginModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using Microsoft.AspNetCore.Http
+@using new_site.DataModel
 @{
+    // Use layout "_LayoutA"
     Layout = "_LayoutA";
+    // Set page title
+    ViewData["Title"] = "Login";
+
+    // Get VisitorService from dependency injection
     VisitorService visitorService = ServiceProviderAccessor.ServiceProvider.GetService<VisitorService>();
+
+    // Get userId from cookies
+    var userId = Request.Cookies["ID"];
+    DBHelper1 dbHelper = new DBHelper1();
+    if (userId != null)
+    {
+        int id = Convert.ToInt32(userId);
+        // If user is admin, show visitor counts
+        if (dbHelper.GetAdminById(id) != null)
+        {
+            <div>
+                <span style="font-size:40px; color:white;">Total Logined Visitors:@visitorService.GetVisitorCount()</span>
+                <br />
+                <span style="font-size:40px; color:white;">Visitors logined currently: @Model.StillLogined</span>
+            </div>
+        }
+    }
 }
-<span style="font-size:40px; color:white;">Total Logined Visitors:@visitorService.GetVisitorCount()</span>
-<br />
-<span style="font-size:40px; color:white;">Visitors logined currently: @Model.StillLogined</span>
 
-
-
-<div class="main" style="background-color: rgb(227, 227, 227); margin: 0; width:100%;">
+<!-- Main container for the login form -->
+<div class="main" style="background-color: rgb(227, 227, 227);">
     <form name="regform" method="post" onreset="resetForm()" class="account_header">
+        <!-- Validation scripts partial -->
         <partial name="_ValidationScriptsPartial" />
 
+        <!-- Title container -->
         <div class="title-container" style="border-color: rgb(212, 182, 106)">
             <h1 class="title" style="color:black;">Login</h1>
         </div>
 
+        <!-- Email input with validation -->
         <div style="margin-top:8%;" class="column">
-            <input asp-for="login_email" placeholder="Email"/>
+            <input asp-for="login_email" placeholder="Email" />
             <span asp-validation-for="login_email" class="text-danger"></span>
         </div>
 
+        <!-- Password input with validation -->
         <div style="margin-top:8%;" class="column">
-            <input asp-for="login_password" type="password" placeholder="Password"/>
+            <input asp-for="login_password" type="password" placeholder="Password" />
             <span asp-validation-for="login_password" class="text-danger"></span>
         </div>
 
-
+        <!-- Submit button -->
         <button style="font-size:1.6vw; border-radius: 10px; margin: auto; display: flex; justify-content: center; margin-top:4%" type="submit" value="Login">Login</button>
+        <!-- Anti-forgery token for security -->
         @Html.AntiForgeryToken()
     </form>
+
+    <!-- Signup prompt -->
     <div class="sign_up_prompt">
-        <h1 style="font-size:19px; margin:auto; font-family: Roboto, sans-serif;">Don't have an account?
-            <a style="color:rgb(37, 147, 242); font-size:20px;" href="\Registration_form">Sign Up</a>
+        <h1 style="font-size:1.1vw; margin:auto; font-family: Roboto, sans-serif;">
+            Don't have an account?
+            <a style="color:rgb(37, 147, 242); font-size:1.1vw;" href="\Registration_form">Sign Up</a>
         </h1>
     </div>
 </div>

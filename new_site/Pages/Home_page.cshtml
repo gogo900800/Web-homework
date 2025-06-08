@@ -1,27 +1,65 @@
 ﻿@page
 @model new_site.Pages.Home_pageModel
 @{
+    // Set the page title
+    ViewData["Title"] = "HomePage.";
+    // Use layout "_LayoutA"
     Layout = "_LayoutA";
 }
-<style>
-img {
-    width: 20vw;
-    border-radius: 100px;
-    float: right;
-    border: 1px solid;
-    border-color: rgb(136, 140, 140);
-}
-</style>
-<div class="main" style="background-color: rgb(54, 60, 72); margin-top:1.5%;">
-    <div class="title-container" style="justify-content: space-evenly; border-color:rgb(200, 200, 255);">
-    <h1 class="title" style="color:white"><strong>Sugar</strong></h1>
-    </div>
-    <div style="display:flex; gap: 5%; padding: 0.5%; margin:3%">
-    <p style="">
-        Sugar is the secret ingredient that makes everything a little bit sweeter! From the first sip of your morning coffee to the last bite of a decadent dessert, sugar has the magical ability to elevate flavors and bring comfort to your day. It’s not just an ingredient—it’s the spark that adds joy and excitement to life’s simplest pleasures. <br />
+
+<div class="main" style="background-color: rgb(54, 60, 72); margin-top:1.5%; width:70%">
+
+    <div style="display:flex; gap: 5%; padding: 0.5%;">
+        <p class="best-text" style="color: white;">
+            Sugar is the secret ingredient that makes everything a little bit sweeter! From the first sip of your morning coffee to the last bite of a decadent dessert,
+            sugar has the magical ability to elevate flavors and bring comfort to your day. It’s not just an ingredient—it’s the spark that adds joy and excitement to
+            life’s simplest pleasures. <br />
         </p>
-        <div style="text-align: center;">
-            <img src="../IMG/more_sugar.jpg" alt="sugar in a spoon" />
+    </div>
+</div>
+
+<!-- Container for the clickable image cards -->
+<div style="display: flex; justify-content: center; gap: 10vw; flex-wrap: wrap; width: 100%; margin-top: 3vw;">
+
+    <!-- First image card: The Origin of Sugar -->
+    <div class="image-container">
+        <img src="..\IMG\sugarcane-in-a-basket.jpeg" alt="Sweet Illusion">
+        <div class="home-text">The Origin Of Sugar</div>
+        <div class="fog-frame"></div>
+        <div class="hover-text">Where does sugar come from?</div>
+        <!-- Clicking redirects to the origin of sugar page -->
+        <div onclick="window.location.href='/the_origin_of_sugar';" class="home-link-div">
+            <p>Learn More ➔ </p>
         </div>
     </div>
-</div>  
+
+    <!-- Second image card: The Sugar Industry -->
+    <div class="image-container">
+        <img src="..\IMG\sugar-factory-industry.webp" alt="Sweet Illusion">
+        <div class="home-text">The Sugar Industry</div>
+        <div class="fog-frame"></div>
+        <div class="hover-text">Where is sugar proccesed?</div>
+        <!-- Clicking redirects to the sugar industry page -->
+        <div onclick="window.location.href='/the_sugar_industry';" class="home-link-div">
+            <p>Learn More ➔ </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Script to show fog and hover text on mouseover and hide on mouseout for each image container
+    document.querySelectorAll('.image-container').forEach(container => {
+      const fog = container.querySelector('.fog-frame');
+      const text = container.querySelector('.hover-text');
+
+      container.addEventListener('mouseover', () => {
+        fog.style.display = 'block';
+        text.style.display = 'block';
+      });
+
+      container.addEventListener('mouseout', () => {
+        fog.style.display = 'none';
+        text.style.display = 'none';
+      });
+    });
+</script>

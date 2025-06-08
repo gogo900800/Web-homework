@@ -3,54 +3,52 @@
 @model new_site.Pages.Registration_formModel
 @using Microsoft.AspNetCore.Http
 @{
-    Layout = "_LayoutA";
+    ViewData["Title"] = "Regestration.";  // Set page title
+    Layout = "_LayoutA";                   // Use layout "_LayoutA"
 }
 <style>
-
+/* Empty style block */
 </style>
 
-
-<div class="main" style="background-color: rgb(227, 227, 227); margin: 0; width:100%;">
+<div class="main" style="background-color: rgb(227, 227, 227);">
 @if (!string.IsNullOrEmpty(Model.errorMessage))
 {
     <div class="alert alert-danger">
-        @Model.errorMessage
+        @Model.errorMessage  // Display error message if any
     </div>
 }
 
     <form asp-page="/Registration_form" name="regform" onsubmit="return validateRegisterForm()" method="post" onreset="resetForm()" class="account_header">
         <div class="title-container" style="border-color: rgb(212, 182, 106)">
-            <h1 class="title" style="color:black;">Create An account</h1>
+            <h1 class="title" style="color:black;">Create An account</h1>  <!-- Form title -->
         </div>
         <div style="margin-top:9%;"  class="column">
             <input type="text" asp-for="user.firstName" id="reg_firstName" style="" maxlength="25" placeholder="First Name" autocomplete="on" oninput="CheckFirstName()"/>
-            <span class="error" id="reg_errorfirstName"></span>
+            <span class="error" id="reg_errorfirstName"></span> <!-- Error display for first name -->
             <br />
         </div>
 
         <div class="column">
             <input type="text" asp-for="user.lastName" id="reg_lastName" style="" maxlength="25" placeholder="Last Name" autocomplete="on" oninput="CheckLastName()"/>
-            <span class="error" id="reg_errorlastName"></span>
+            <span class="error" id="reg_errorlastName"></span> <!-- Error display for last name -->
             <br />
         </div>
 
         <div class="column">
             <input type="text" asp-for="user.Email" id="reg_Email" style="" maxlength="50" placeholder="Email" autocomplete="on" oninput="CheckEmail()"/>
-            <span class="error" id="reg_errorEmail"></span>
+            <span class="error" id="reg_errorEmail"></span> <!-- Error display for email -->
         </div>
 
         <div class="column">
-
             <br />
             <input type="password" asp-for="user.Password" id="reg_password" minlength="8" maxlength="20" placeholder="Password" oninput="CheckPassword()"/>
-            <span class="error" id="reg_errorPassword"></span>
+            <span class="error" id="reg_errorPassword"></span> <!-- Error display for password -->
             <br />
         </div>
 
         <div class="column">
-
             <input type="password" id="reg_verifyPassword" minlength="8" maxlength="20" placeholder="Verify Password" oninput="CheckVerfiyPassword()" />
-            <span class="error" id="reg_errorVerifyPassword"></span>
+            <span class="error" id="reg_errorVerifyPassword"></span> <!-- Error for password verification -->
             <br />
         </div>
 
@@ -58,7 +56,7 @@
             <select asp-for="user.PrefixID" id="reg_prefix" class="input_field" style="width: 15%;" oninput="CheckPrefix()">
                 @foreach (string i in Model.Prefix)
                 {
-                    <option value="@i">@i</option>
+                    <option value="@i">@i</option>  <!-- Dropdown for prefix -->
                 }
             </select>
 
@@ -67,9 +65,8 @@
             <input type="text" asp-for="user.Phone" id="reg_phone" class="input_field" style="" placeholder="888-42-29" oninput="CheckPhone()" />
         </div>
 
-
-        <span class="error" id="reg_errorPrefix"></span>
-        <span class="error" id="reg_errorPhone"></span>
+        <span class="error" id="reg_errorPrefix"></span> <!-- Error for prefix -->
+        <span class="error" id="reg_errorPhone"></span>  <!-- Error for phone -->
 
         <div class="input_like" style="padding-top:1.4%; padding-bottom:1.4%; align-items:center; margin-top:2.4%; background-color: rgb(240, 242, 245);">
                 <span class="span" style="margin-left:1.2%;">Male</span>
@@ -79,62 +76,60 @@
                 <span class="span" style="">Other</span>
                 <input type="radio" asp-for="user.Gender" value="Other" id="reg_gender3" style=""/>
         </div>
-        <span class="error" id="reg_errorGender"></span>
+        <span class="error" id="reg_errorGender"></span> <!-- Error for gender -->
         <br />
 
         <div class="input_like">
             <select asp-for="user.birthYear" id="reg_birthYear" class="input_field" style="" oninput="CheckYearBorn()">
                 @foreach (int i in Model.BuildDropDownFieldsRange(1940,2026))
                 {
-                    <option style="" value="@i">@i</option>
+                    <option style="" value="@i">@i</option>  <!-- Dropdown for birth year -->
                 }
         </select>
         </div>
-        <span class="error" id="reg_errorbirthYear"></span>
+        <span class="error" id="reg_errorbirthYear"></span> <!-- Error for birth year -->
 
         <div class="line" style="background-color: lightslategray; margin-top: 4%"></div>
 
-
         <div style="border:1px solid; width: 70%; margin:auto; padding:1%; margin-top:4%;">
-
             <div style="display:flex; justify-content:space-evenly; margin:auto; margin-top:2%; margin-bottom:2%; width:60%; border-bottom: 1px solid rgb(200, 200, 255);">
-                <label class="title" style="font-size: 22px; padding-bottom:0.7%;">Answer Truthfully</label>
+                <label class="title" style="font-size: 2vw; padding-bottom:0.7%;">Answer Truthfully</label>  <!-- Section title -->
             </div>
 
             <div style="display:flex; flex-direction: column; padding:2%; gap: 10px; margin-top: 4%;">
-
                 <div style="display:flex; justify-content:space-between; align-items:center;">
                     <div style="width: 80%;"><label>Have you ever eaten sugar
                         ?</label></div>
-                    <input type="checkbox" style="width: auto; padding: 0; ">
+                    <input type="checkbox" style="width: auto; padding: 0; "> <!-- Checkbox question -->
                 </div>
 
                 <div style="display:flex; justify-content:space-between; align-items:center;">
                     <div style="width: 80%;"><label>Did you like it?</label></div>
-                    <input type="checkbox" style="width: auto; padding: 0;">
+                    <input type="checkbox" style="width: auto; padding: 0;"> <!-- Checkbox question -->
                 </div>
 
                 <div style="display:flex; justify-content:space-between; align-items:center;">
                     <div style="width: 80%;"><label>Want to hear fun facts about sugar?</label></div>
-                    <input type="checkbox" style="width: auto; padding: 0; ">
+                    <input type="checkbox" style="width: auto; padding: 0; "> <!-- Checkbox question -->
                 </div>
 
                 <div style="display:flex; justify-content:space-between; align-items:center;">
                     <div style="width: 80%;"><label>None of the following is true about me</label></div>
-                    <input type="checkbox" id="loser" style="width: auto; padding: 0; ">
+                    <input type="checkbox" id="loser" style="width: auto; padding: 0; "> <!-- Special checkbox -->
                 </div>
             </div>
         </div>
 
-
-
         <br />
-        <button style="font-size:30px; border-radius: 10px; margin: auto; display: flex; justify-content: center;" type="submit" value="Register">Register</button>
+        <button style="font-size:2.1vw; border-radius: 10px; margin: auto; display: flex; justify-content: center;" type="submit" value="Register">Register</button>  <!-- Submit button -->
     </form>
 </div>
-<script src="js/site.js" asp-append-version="true"></script>
+
+<script src="js/site.js" asp-append-version="true"></script>  <!-- External JS -->
 
 <script>
+        // Redirect to a site if "None of the following is true about me" checkbox checked
+
         document.getElementById("loser").addEventListener("change", function() {
         if (this.checked) {
             window.location.href = "https://crisis.solari-inc.org/";

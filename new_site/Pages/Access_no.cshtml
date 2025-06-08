@@ -1,12 +1,16 @@
 ﻿@page
 @model new_site.Pages.Access_noModel
 @{
+    // Use the alternate layout (_LayoutA)
     Layout = "_LayoutA";
 }
 
-<div style="width:70%; background-color: rgb(54, 60, 71); margin:auto; height:20vw; margin-top:3vw; padding-top: 0.6vw; ">
+<div style="width:70%; background-color: rgb(54, 60, 71); margin:auto; height:20vw; margin-top:3vw; padding-top: 0.6vw;">
     <div class="title-container" style="border-color: red;">
-    <p class="title" style="color: red;">Access Denied</p>
+        <p class="title" style="color: red;">Access Denied</p> @* Show error title in red *@
     </div>
-    <p style="font-size: 1.1vw; text-align: center;">Your access to the following page has been resreicted, please nevigate back to the home page.</p>
+    <p style="font-size: 1.1vw; text-align: center; color:white">
+        Your access to the following page has been restricted, please nevigate back to the home page.
+        @* Show error message with instruction to go back *@
+    </p>
 </div>

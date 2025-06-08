@@ -9,12 +9,11 @@ namespace new_site.Pages
     {
         public IActionResult OnGet()
         {
-            HttpContext.Session.Clear();
-            Response.Cookies.Delete("name");
-            Response.Cookies.Delete("ID");
-            HttpContext.Session.SetString(Utils.KEY_ROLE, Utils.KEY_ROLE_GUEST);
-            return RedirectToPage("/login");
+            HttpContext.Session.Clear();  // Clear all session data on logout
+            Response.Cookies.Delete("name");  // Delete the "name" cookie
+            Response.Cookies.Delete("ID");    // Delete the "ID" cookie
+            HttpContext.Session.SetString(Utils.KEY_ROLE, Utils.KEY_ROLE_GUEST);  // Set user role to guest in session
+            return RedirectToPage("/login");  // Redirect user to login page after logout
         }
-
     }
 }

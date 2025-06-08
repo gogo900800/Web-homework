@@ -5,60 +5,60 @@
 @using new_site.Pages;
 @using new_site.DataModel;
 @{
-    Layout = "_LayoutA";
+    ViewData["Title"] = "UsersList.";  // Page title
+    Layout = "_LayoutA";  // Set layout page
 }
 
-<div style="background-color:rgb(54, 60, 71); width: 80%; margin:auto; padding-top:1vw">
-<form method="get" onreset="resetForm()" class="quary_page_form">
-    <input asp-for="filter_value" name="filter_value" />
-    <select name="filter_column">
-        <option value="first_name">First Name</option>
-        <option value="last_name">Last Name</option>
-        <option value="city">Name Of City</option>
-        <option value="prefix">Prefix</option>
-        <option value="phone_number">Phone Number</option>
-        <option value="email">Email</option>
-        <option value="year_born">Year Born</option>
-        <option value="gender">Gender</option>
-        <option value="password">Password</option>
-    </select>
-    <button type="submit">Search</button>
-</form>
+<div style="background-color:rgb(54, 60, 71); width: 80%; margin:auto;">
+    <form method="get" onreset="resetForm()" class="quary_page_form">
+        <input asp-for="filter_value" name="filter_value" />  <!-- Input for filter value -->
+        <select name="filter_column">  <!-- Dropdown for selecting column to filter -->
+            <option value="first_name">First Name</option>
+            <option value="last_name">Last Name</option>
+            <option value="prefix">Prefix</option>
+            <option value="phone_number">Phone Number</option>
+            <option value="email">Email</option>
+            <option value="year_born">Year Born</option>
+            <option value="gender">Gender</option>
+        </select>
+        <button type="submit">Search</button>  <!-- Submit search -->
+    </form>
 
-
-
-
-<div class="user-list">
     <div class="user-row header">
+        <div>Delete</div>  <!-- Header column for delete action -->
         @foreach (string col in Model.DisplayColumns)
         {
             if (col.Equals("Prefix") || col.Equals("Password"))
             {
-                continue;
+                continue;  // Skip showing "Prefix" and "Password" columns in header
             }
-            <div class="user-cell">@col</div>
+            <div>@col</div>  <!-- Display column name -->
         }
     </div>
 
     @foreach (DataRow row in Model.DataTableUsers.Rows)
     {
         <div class="user-row">
+            <div>
+                <a asp-page="Delete" asp-route-Id="@row["Id"]" style="color:rgb(91, 14, 14);">
+                    <strong>Delete</strong>
+                </a>  <!-- Link to delete user by ID -->
+            </div>
             @foreach (DataColumn column in Model.DataTableUsers.Columns)
             {
                 if (column.ColumnName.Equals("prefix") || column.ColumnName.Equals("password"))
                 {
-                    continue;
+                    continue;  // Skip "prefix" and "password" columns in rows
                 }
                 else if (column.ColumnName.Equals("phone"))
                 {
-                    <div class="user-cell">@row["prefix"]-@row[column.ColumnName]</div>
+                    <div>@row["prefix"]-@row[column.ColumnName]</div>  // Combine prefix and phone number
                 }
                 else
                 {
-                    <div class="user-cell">@row[column.ColumnName]</div>
+                    <div>@row[column.ColumnName]</div>  // Display column value
                 }
             }
         </div>
     }
-</div>
 </div>

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using new_site.DataModel;
+using System.Data;
 
 namespace new_site.Pages
 {
@@ -50,6 +51,19 @@ namespace new_site.Pages
                 return Page();
             }
 
+
+            string sqlQuery = $"SELECT * FROM {Utils.DB_USERS_TABLE} WHERE Email = '{user.Email}' AND Password ='{user.Password}'";
+            DataTable userTable = userTable = dB.RetrieveTable(sqlQuery, "usersTBL");
+            user.ID = Convert.ToInt32(userTable.Rows[0]["Id"]);
+
+            CookieOptions cookieOptions = new CookieOptions();
+            cookieOptions.Expires = DateTime.Now.AddHours(2);
+
+            Response.Cookies.Append("name", userTable.Rows[0]["first_name"].ToString(), cookieOptions);
+            Response.Cookies.Append("ID", user.ID.ToString(), cookieOptions);
+
+
+            HttpContext.Session.SetString("firstName", userTable.Rows[0]["first_name"].ToString());
             return RedirectToPage("/Home_page");
         }
 

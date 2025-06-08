@@ -20,8 +20,27 @@ namespace new_site.Pages
             sqlQuery = $"SELECT * FROM {Utils.DB_USERS_TABLE}";
             DBHelper1 dBHelper = new DBHelper1();
             DataTableUsers = dBHelper.RetrieveTable(sqlQuery,"usersTBL");
+            string userId = Request.Cookies["ID"];
+
+            // If cookie is missing, block access
+            if (userId == null)
+            {
+                return RedirectToPage("/Access_no");
+            }
+
+            int id = Convert.ToInt32(userId);
+
+            // If not admin, block access
+            if (dBHelper.GetAdminById(id) == null)
+            {
+                return RedirectToPage("/Access_no");
+            }
+
+            // If all checks passed, allow access
+            return Page();
+
             return Page();
         }
-        public string[] DisplayColumns { get; set; } = { "ID", "First Name", "Last Name", "Phone Number", "Year Born", "Gender", "Email", "City", "Password" };
+        public string[] DisplayColumns { get; set; } = { "ID", "First Name", "Last Name", "Phone Number", "Year Born", "Gender", "Email", "Password" };
     }
 }

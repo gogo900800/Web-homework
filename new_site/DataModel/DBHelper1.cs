@@ -145,7 +145,6 @@ namespace new_site.DataModel
             dr["last_name"] = user.lastName;
             dr["prefix"] = user.PrefixID;
             dr["phone"] = user.Phone;
-            dr["city"] = user.City;
             //dr["ISR_ID"] = user.ISR_ID;
             dr["gender"] = user.Gender;
             dr["birth_year"] = user.birthYear;
@@ -173,7 +172,6 @@ namespace new_site.DataModel
             SQLStr += $"'{user.lastName}', ";
             SQLStr += $" {user.PrefixID}, ";
             SQLStr += $"'{user.Phone}', ";
-            SQLStr += $" {user.City}, ";
             //SQLStr += $"'{user.ISR_ID}', ";
             SQLStr += $"'{user.Gender}', ";
             SQLStr += $"'{user.birthYear}', ";
@@ -229,7 +227,6 @@ namespace new_site.DataModel
                 $"last_name = '{user.lastName}', " +
                 $"prefix = {user.PrefixID}, " +
                 $"phone = '{user.Phone}', " +
-                $"City = '{user.City}', " +
                 $"gender = '{user.Gender}', " +
                 $"birth_year = {user.birthYear} " +
                 $"WHERE Id = {id1} ";
@@ -346,7 +343,6 @@ namespace new_site.DataModel
             dr["last_name"] = user.lastName;
             dr["prefix"] = user.PrefixID;
             dr["phone"] = user.Phone;
-            dr["City"] = user.City;
             //dr["ISR_ID"] = user.ISR_ID;
             dr["gender"] = user.Gender;
             //dr["Birthday"] = user.Birthday.ToString();

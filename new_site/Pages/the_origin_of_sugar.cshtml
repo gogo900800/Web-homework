@@ -1,25 +1,54 @@
 ﻿@page
 @model new_site.Pages.the_origin_of_sugarModel
 @{
-    Layout = "_LayoutA";
+    Layout = "_LayoutA"; // Use the _LayoutA.cshtml layout for consistent styling/navigation
 }
 
-    <h1 style="font-size: 50px; font-family:'Leelawadee UI'" align="center">the origin of sugar</h1>
 
-    <section>
-        <h2 style="font-size: 35px; font-family:'Myanmar Text'">
-            Sugar primarily comes from two plants:
-        </h2>
-        <ol style="font-size: 24px; font-family:'Myanmar Text'">
-            <li><strong>sugarcane</strong></li>
-            <li><strong>sugar beets</strong></li>
-        </ol>
-        <h2 style=" font-size: 35px; font-family:'Myanmar Text'">Here's a simplified process:</h2>
-        <ul>
-            <li style="font-size: 25px; font-family:'Myanmar Text'">Sugar beets: These are processed to extract a sugary juice, which is then purified to leave behind crystallized sugar.</li>
-            <li style="font-size: 25px; font-family:'Myanmar Text'">Sugarcane: The cane is crushed to extract its juice, which is then boiled to form thick syrup. This syrup is then crystallized to produce raw sugar.</li>
-        </ul>
+<div class="main" style="width:70%;background-color: white">
+    <!-- Page title -->
+    <div class="title-container">
+        <p class="title">The Origin Of Sugar</p>
+    </div>
 
-        <p style="font-size: 25px;  font-family:'Myanmar Text'">High fructose corn syrup, often used in processed foods, is derived from cornstarch, which is mostly made up of glucose. Enzymes are added to convert some of this glucose into fructose, resulting in a sweet syrup.</p>
-    </section>
-   
+    <!-- Main content area with two sections -->
+    <div class="origin-header">
+
+        <!-- First section: image and text side by side -->
+        <div class="origin-containor">
+            <div>
+                <!-- Image of beet and harvest -->
+                <img class="origin_image" src="~/IMG/beet-and-harvest.webp" />
+            </div>
+
+            <p class="best-text" style="box-shadow: 0 0 0 rgba(0,0,0,0);">
+                Sugar doesn’t start in a factory. It starts in the earth.
+
+                Long before it hides inside candy wrappers and soda bottles, sugar begins its life in tall, green stalks — sugarcane — or in the pale, humble sugar beet.
+                These plants are harvested, crushed, boiled, filtered, and crystallized until all that’s left is the sweet, white powder we know so well.
+
+                But it wasn’t always this easy.
+            </p>
+        </div>
+
+        <!-- Second section: text and image side by side -->
+        <div class="origin-containor">
+            <p class="best-text" style="box-shadow: 0 0 0 rgba(0,0,0,0);">
+                Centuries ago, sugar was so rare and valuable that it was called "white gold." It fueled trade empires, powered plantations, and even helped shape the modern world — not
+                just through taste, but through labor, exploitation, and wealth.
+
+                So when you ask where sugar comes from, you’re not just asking about a plant.
+
+                You’re asking about history. Industry. Power.
+
+                And it all starts in a field...
+                with something that looks innocent.
+            </p>
+
+            <div>
+                <!-- Image of sugarcane -->
+                <img class="origin_image" src="~/IMG/sugarcane2.webp" />
+            </div>
+        </div>
+    </div>
+</div>

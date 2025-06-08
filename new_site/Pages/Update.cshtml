@@ -3,65 +3,61 @@
 @model new_site.Pages.UpdateModel
 @using Microsoft.AspNetCore.Http
 @{
-    Layout = "_LayoutA";
+    ViewData["Title"] = "UpdateInfo.";
+    Layout = "_LayoutA";  // Using layout page _LayoutA
 }
-<style>
-</style>
 
-
-<div class="main" style="background-color: rgb(227, 227, 227); margin: 0; width:100%;">
-    @if (!string.IsNullOrEmpty(Model.errorMessage))
+<div class="main" style="background-color: rgb(227, 227, 227); margin: 0; width:100%;"> <!-- Main container with light gray background -->
+    @if (!string.IsNullOrEmpty(Model.errorMessage))  // Show error message if exists
     {
         <div class="alert alert-danger">
             @Model.errorMessage
         </div>
     }
 
-    <form name="regform" method="post" onreset="resetForm()" class="account_header">
-        <div class="title-container" style="border-color: rgb(212, 182, 106)">
-            <h1 class="title" style="color:black;">Update Your Account</h1>
+    <form name="regform" method="post" onreset="resetForm()" class="account_header" onsubmit="return validateUpdateForm()">  <!-- Form with validation handlers -->
+        <div class="title-container" style="border-color: rgb(212, 182, 106)"> <!-- Title container with gold border -->
+            <h1 class="title" style="color:black;">Update Your Account</h1> <!-- Form title -->
         </div>
 
-        <div class="column" style="margin-top:8%;">
-            <input type="text" asp-for="user.Email" id="reg_Email" style="" maxlength="50" placeholder="Email" autocomplete="on" oninput="checkEmail()" />
-            <span class="text-danger" id="reg_errorEmail"></span>
+        <div class="column" style="margin-top:8%;">  <!-- Email input -->
+            <input type="text" asp-for="user.Email" id="reg_Email" maxlength="50" placeholder="Email" autocomplete="on" oninput="CheckEmail()" />
+            <span class="error" id="reg_errorEmail"></span> <!-- Email error message -->
         </div>
 
-        <div class="column">
-
+        <div class="column">  <!-- Password input -->
             <br />
-            <input type="password" asp-for="user.Password" id="reg_password" minlength="8" maxlength="20" placeholder="Password" oninput="checkPassword()" />
-            <span class="text-danger" id="reg_errorPassword"></span>
-            <br />
-        </div>
-
-        <div class="column">
-
-            <input type="password" id="reg_verifyPassword" minlength="8" maxlength="20" placeholder="Verify Password" oninput="verifyPassword()" />
-            <span class="text-danger" id="reg_errorVerifyPassword"></span>
+            <input type="password" asp-for="user.Password" id="reg_password" minlength="8" maxlength="20" placeholder="Password" oninput="CheckPassword()" />
+            <span class="error" id="reg_errorPassword"></span> <!-- Password error message -->
             <br />
         </div>
 
-        <div class="input_like" style="height: 100%">
-            <select asp-for="user.PrefixID" class="input_field" style="width: 15%; ">
+        <div class="column">  <!-- Verify password input -->
+            <input type="password" id="reg_verifyPassword" minlength="8" maxlength="20" placeholder="Verify Password" oninput="CheckVerfiyPassword()" />
+            <span class="error" id="reg_errorVerifyPassword"></span> <!-- Verify password error message -->
+            <br />
+        </div>
+
+        <div class="input_like" style=""> <!-- Prefix dropdown and phone input side by side -->
+            <select asp-for="user.PrefixID" id="reg_prefix" class="input_field" style="width: 15%;" oninput="CheckPrefix()">
                 @foreach (string i in Model.Prefix)
                 {
-                    <option value="@i">@i</option>
+                    <option value="@i">@i</option>  <!-- Prefix options -->
                 }
             </select>
 
-            <div style="width: 3%;"></div>
+            <div style="width: 3%;"></div> <!-- Spacer -->
 
-            <input type="text" asp-for="user.Phone" id="reg_phone" class="input_field" style="" placeholder="888-42-29" />
+            <input type="text" asp-for="user.Phone" id="reg_phone" class="input_field" placeholder="888-42-29" oninput="CheckPhone()" />
         </div>
 
-        <span class="text-danger" id="reg_errorPrefix"></span>
-        <span class="text-danger" id="reg_errorPhone"></span>
-
+        <span class="error" id="reg_errorPrefix"></span> <!-- Prefix error message -->
+        <span class="error" id="reg_errorPhone"></span> <!-- Phone error message -->
         <br />
 
         <br />
-        <button style="font-size:30px; border-radius: 10px; margin: auto; display: flex; justify-content: center;" type="submit" value="Update">Update</button>
+        <button style="font-size:2.1vw; border-radius: 10px; margin: auto; display: flex; justify-content: center;" type="submit" value="Update">Update</button> <!-- Submit button -->
     </form>
 </div>
-<script src="js/site.js" asp-append-version="true"></script>
+
+<script src="js/site.js" asp-append-version="true"></script> <!-- External JS for validation -->

@@ -1,54 +1,61 @@
-﻿
+﻿/* Container with flex layout, full width, centered items, and spaced evenly */
 .flex_container {
     display: flex;
     width: 100%;
     align-items: center;
+    justify-content: space-around;
 }
+
+/* Inner flex div with padding, border, rounded corners, half width, centered text */
 .flex_container_div {
     display: flex;
-    padding: 0.35%;
+    padding: 0.6%;
     border: 1px solid;
     border-radius: 5px;
     width: 50%;
     text-align: center;
-    font-size: 1.8vw;
+    font-size: 1.7vw;
     background-color: rgb(232, 210, 170);
-    margin: 1.2%;
-    flex-direction: row;
-    justify-content: center;
+    margin: 0.6%;
+    flex-direction: row; /* horizontal layout */
+    justify-content: center; /* center items horizontally */
     height: 100%;
 }
+
+/* Style for all anchor links */
 a {
-    text-decoration: none;
-    color: rgb(20, 24, 42);
-    font-family: Roboto, sans-serif;
+    text-decoration: none; /* remove underline */
+    color: rgb(20, 24, 42); /* dark blue/gray color */
+    font-family: Roboto, sans-serif; /* font style */
     text-align: center;
 }
 
+/* Body styling with background color and image, no margin or padding */
 body {
     background-color: rgb(39, 41, 48);
     background-image: url('../img/background_pic.jpg');
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
 }
 
+/* Paragraph text styling */
 p {
     font-size: 1vw;
     font-family: Roboto, sans-serif;
-    color: white;
 }
 
+/* Container for titles with centered text and top/bottom borders */
 .title-container {
     text-align: center;
     width: 95%;
     border-top: 1px solid;
     border-bottom: 1px solid;
     padding: 1%;
-    margin:auto;
-    margin-top:2%;
+    margin: auto;
+    margin-top: 2%;
 }
 
-
+/* Title text styling with inline-block, no margin/padding */
 .title {
     font-family: Roboto, sans-serif;
     font-size: 1.5vw;
@@ -58,46 +65,59 @@ p {
     border: none;
     padding: 0;
 }
+
+/* Column flex container */
 .column {
     display: flex;
     flex-direction: column;
 }
+
+/* Main container padding and centering */
 .main {
     padding: 1%;
-    width: 70%;
     margin: auto;
-    border-radius:10px;
 }
+
+/* Heading 3 style */
 h3 {
     color: rgb(74, 74, 74);
     font-family: Roboto, sans-serif;
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
 }
+
+/* A row flex container with no extra style but specific width and background */
 .no-style {
     display: flex;
+    flex-direction: row;
     padding: 0.35%;
-    width: 45%;
+    width: 14vw;
     text-align: center;
     align-items: center;
     font-size: 1vw;
     border: 1px solid;
     background-color: rgb(232, 210, 170);
-    margin: 0.4%;
+    margin: auto;
     justify-content: center;
     height: 100%;
 }
-.no-style > * {
-    margin-right: 5px;
-}
+
+    /* Adds spacing to all direct child elements inside .no-style */
+    .no-style > * {
+        margin-right: 5px;
+    }
+
+/* A thin horizontal line with some transparency and margin */
 .line {
     width: 80%;
-    display:flex;
+    display: flex;
     margin: auto;
     height: 1px;
     background-color: rgba(255, 255, 255, 0.2);
     margin-top: 15px;
 }
+
+/* Input styling: flexible width, padding, background color, no border */
 input {
     display: flex;
     justify-content: space-around;
@@ -109,6 +129,7 @@ input {
     box-sizing: border-box;
 }
 
+/* Container styled like an input element */
 .input_like {
     display: flex;
     justify-content: space-around;
@@ -117,6 +138,7 @@ input {
     box-sizing: border-box;
 }
 
+/* Input fields styling: full size, background color, no border, font */
 .input_field {
     width: 100%;
     height: 100%;
@@ -129,7 +151,7 @@ input {
     box-sizing: border-box;
 }
 
-
+/* Select dropdown input styling similar to input fields */
 select.input_field {
     width: 100%;
     height: 100%;
@@ -138,17 +160,21 @@ select.input_field {
     font-family: Roboto, sans-serif;
     font-size: 0.8vw;
     color: rgb(74, 74, 74);
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
+    appearance: none; /* remove default arrow */
+    -webkit-appearance: none; /* Safari */
+    -moz-appearance: none; /* Firefox */
     box-sizing: border-box;
 }
+
+/* Time text styling */
 .time {
     font-size: 1vw;
     font-family: Roboto, sans-serif;
     margin: 0.1%;
     color: white;
 }
+
+/* Account related text styling */
 .account {
     font-family: Roboto, sans-serif;
     margin: 0.1%;
@@ -156,39 +182,47 @@ select.input_field {
     text-align: center;
     color: rgb(209, 246, 232);
 }
+
+/* Footer links style */
 .footer_option {
     color: white;
     text-decoration: none;
     font-size: 0.8vw;
 }
+
+/* Account header container with width, centered flex column and border */
 .account_header {
-    width: 40%;
+    width: 50%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     margin: auto;
     border: 1px double grey;
     padding: 0.5%;
-    margin-top: 4.5%;
     background-color: rgb(255, 255, 255);
 }
+
+/* Placeholder text styling inside input */
 input::placeholder {
     font-size: 0.8vw;
     color: rgb(74, 74, 74);
     font-family: Roboto, sans-serif;
 }
 
+/* Span text styling */
 .span {
     font-size: 0.8vw;
     color: rgb(74, 74, 74);
     font-family: Roboto, sans-serif;
 }
 
+/* Label styling */
 label {
     margin: 0.8%;
     font-size: 1vw;
     font-family: Roboto, sans-serif;
 }
+
+/* Error message styling in red */
 .error {
     font-size: 1vw;
     font-family: Roboto, sans-serif;
@@ -197,11 +231,11 @@ label {
     margin-top: 0.3%;
     font-size-adjust: 0.5;
 }
+
+/* Sign-up prompt container with border, padding and background */
 .sign_up_prompt {
-    width: 40%;
+    width: 50%;
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
     margin: auto;
     border: 1px double grey;
     padding: 0.5%;
@@ -210,6 +244,8 @@ label {
     background-color: rgb(255, 255, 255);
     margin-top: 1%;
 }
+
+/* Query page form container with flex row, spacing, and border */
 .quary_page_form {
     width: 40%;
     display: flex;
@@ -218,38 +254,183 @@ label {
     margin: auto;
     border: 1px double grey;
     padding: 0.5%;
-    margin-top: 4.5%;
+    margin-top: 2%;
     background-color: rgb(255, 255, 255);
     margin-bottom: 2%;
 }
+
+/* User list container with column flex, spacing, and background */
 .user-list {
     width: 95%;
     margin: auto;
     display: flex;
-    gap: 0.8vw;
     flex-direction: column;
     font-family: Roboto, sans-serif;
     background-color: rgb(227, 227, 227);
+    gap: 0.5vw;
 }
 
+/* User row grid with fixed columns and spacing */
 .user-row {
-    display: flex;
-    padding: 0.6%;
-    background-color: #fff;
-    border: 1px solid #ccc;
+    width: 80%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 80px repeat(auto-fit, minmax(100px, 1fr));
+    align-items: center;
+    padding: 0.4vw;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(204, 204, 204);
     border-radius: 8px;
-    flex-wrap: wrap;
+    gap: 0.4vw;
+    word-break: break-word;
+}
+/* Header row special background and bold text */
+.user-row.header {
+    background-color: rgb(211, 224, 255);
+    font-weight: bold;
+}
+/* Font size for header row cells */
+.user-row.header > div {
+    font-size: 1vw;
+}
+/* Font size and padding for normal row cells */
+.user-row > div {
+    font-size: 0.85vw;
+    padding: 0.2vw 0.4vw;
+}
+/* Admin link styling with larger font */
+.Admin_link {
+    font-size: 1.5vw;
+    color: black;
 }
 
-    .user-row.header {
-        background-color: #d3e0ff;
-        font-weight: bold;
+/* Background style for admin link block */
+.Admin_link_background {
+    width: 15%;
+    aspect-ratio: 1 / 1;
+    background-color: rgb(239, 189, 59);
+    align-items: center;
+}
+
+/* Text styling with serif font, padding, shadow and margin */
+.best-text {
+    font-family: "Georgia", serif;
+    font-size: 1.1vw;
+    line-height: 1.75;
+    color: rgb(33, 33, 33);
+    padding: 2vw;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    width: 75%;
+    margin: 2vw auto;
+    text-align: justify;
+    letter-spacing: 0.03em;
+}
+
+/* Image container with relative positioning and flex column */
+.image-container {
+    position: relative;
+    height: auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* Image inside image container with block display and max width */
+.image-container > img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 20vw;
+}
+/* Fog effect overlay with radial gradient and inset shadow */
+.fog-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.6) 100%);
+    pointer-events: none;
+    display: none;
+    box-shadow: inset 0 0 60px 30px rgba(0, 0, 0, 0.5);
+    opacity: 1;
+}
+/* Text that appears on hover over the image, positioned at bottom */
+.hover-text {
+    position: absolute;
+    bottom: 21%;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-family: 'Georgia', serif;
+    font-size: 1.1vw;
+    display: none;
+    pointer-events: none;
+}
+
+/* Text at the bottom of the home section */
+.home-text {
+    position: absolute;
+    bottom: 27%;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-family: Arial Black;
+    font-size: 1.5vw;
+}
+
+/* Link container at the bottom center with green background */
+.home-link-div {
+    background-color: rgb(125, 189, 67);
+    position: absolute;
+    bottom: 4%;
+    left: 0;
+    right: 0;
+    width: 60%;
+    margin: auto;
+    text-align: center;
+}
+
+    /* Paragraph inside home link container with specific font and color */
+    .home-link-div > p {
+        font-size: 1.3vw;
+        color: white;
+        font-family: 'Georgia', serif;
+        text-align: center;
     }
 
-        .user-row.header > div {
-            font-size: 1vw;
-        }
+/* Image with fixed width and aspect ratio */
+.origin_image {
+    width: 15vw;
+    aspect-ratio: 13 / 9;
+    margin: 0;
+    padding: 0;
+}
 
-.user-cell {
-    flex: 1;
+/* Research text styled with serif font, color, spacing, and margin */
+.research-text {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    color: rgb(148, 150, 145);
+    font-size: 1.1vw;
+    line-height: 1.8;
+    letter-spacing: 0.3px;
+    text-align: justify;
+    margin-bottom: 2vw;
+}
+
+/* Container for origin section with flex row, spaced around */
+.origin-containor {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 70%;
+    margin: auto;
+}
+
+/* Header container inside origin container, column flex with space around */
+.origin-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }

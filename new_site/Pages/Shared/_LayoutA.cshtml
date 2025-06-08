@@ -1,38 +1,49 @@
 ﻿@using new_site.DataModel
 @{
+    // Get values from cookies and session
     var userName = Context.Request.Cookies["name"];
     var name = Context.Session.GetString("firstName");
     var userId = Context.Request.Cookies["ID"];
-    DBHelper1 dbHelper = new DBHelper1();
+    DBHelper1 db = new DBHelper1();
 
-    if (string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(userName))
+    // If session name is missing but cookie exists, use cookie name
+    if (name == null && userName != null)
     {
         name = userName;
     }
 
-    if (!string.IsNullOrEmpty(name))
+    // If we have a name (from session or cookie)
+    if (name != null)
     {
+        // Save it to session
         Context.Session.SetString(Utils.KEY_USER_NAME, name);
 
-        if (!string.IsNullOrEmpty(userId) && int.TryParse(userId, out int id))
+        // If user ID is available
+        if (userId != null)
         {
-            if (dbHelper.GetAdminById(id) != null)
+            int id = Convert.ToInt32(userId);
+            // Check if user is admin by ID
+            if (db.GetAdminById(id) != null)
             {
+                // Set admin role
                 Context.Session.SetString(Utils.KEY_ROLE, Utils.KEY_ROLE_ADMIN);
             }
             else
             {
+                // Set regular user role
                 Context.Session.SetString(Utils.KEY_ROLE, Utils.KEY_ROLE_USER);
             }
         }
         else
         {
+            // If ID is missing, default to user role
             Context.Session.SetString(Utils.KEY_ROLE, Utils.KEY_ROLE_USER);
         }
     }
     else
     {
-        Context.Session.SetString(Utils.KEY_USER_NAME, Utils.KEY_ROLE_GUEST);
+        // If no name exists at all, use guest role
+        Context.Session.SetString(Utils.KEY_USER_NAME, Utils.VALUE_USERNAME_GUEST);
         Context.Session.SetString(Utils.KEY_ROLE, Utils.KEY_ROLE_GUEST);
         name = Utils.KEY_ROLE_GUEST;
     }
@@ -43,80 +54,96 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title >@ViewData["Title"]Sugar</title>
+    <title>@ViewData["Title"]com</title>
     <link rel="stylesheet" href="~/css/Style.css" asp-append-version="true" />
-
-
 </head>
 <body>
 
     <header style="margin:auto; width:100%; margin-top:1.2%;">
 
-
         <div class="flex_container">
 
             <div style="width:20%;position: fixed; left:5px;">
                 <div class="flex_container_div" style="display: grid; grid-template-columns: repeat(1, 1fr); background-color: rgb(54, 60, 72);">
-                    <p id="Clock" class="time"></p>
-                    <p id="Date" class="time"></p>
+                    <p id="Clock" class="time"></p> @* Clock shown here *@
+                    <p id="Date" class="time"></p> @* Date shown here *@
                 </div>
             </div>
 
-            <div class="flex_container_div" style="font-size: 1.4vw; margin: auto; width: 14%; border-radius: 2vw;">
-                    <a href="/Home_page">Home page</a>
-                </div>
-              
+            <div class="flex_container_div" style="margin: auto; width: 14%; border-radius: 2vw;">
+                <a href="/Home_page">Home page</a> @* Home page link in center *@
+            </div>
 
             <div style="display:flex; position: absolute; right:5px;">
-                <div class="no-style" >
-                    <span>Hello, @name!</span>
+                <div class="no-style">
+                    <span>Hello, @name!</span> @* Show user's name (or Guest) *@
                 </div>
 
                 @if (Context.Session.GetString("firstName") != null)
                 {
-                    <div class="flex_container_div" style="background-color: rgb(53, 73, 120);">
-                        <a style="" class="account"  href="/Update">Update</a>
-                    </div>
-                    <div class="flex_container_div" style="background-color: rgb(171, 10, 24)">
-                        <a style="" class="account" href="/Logout">Logout</a>
-                    </div>
-                }
-                else if (userName != null)
-                {
+                    @* Logged-in via session: show update/logout/admin options *@
                     <div class="flex_container_div" style="background-color: rgb(53, 73, 120);">
                         <a style="" class="account" href="/Update">Update</a>
                     </div>
                     <div class="flex_container_div" style="background-color: rgb(171, 10, 24)">
                         <a style="" class="account" href="/Logout">Logout</a>
                     </div>
+                    @if (Context.Session.GetString(Utils.KEY_ROLE) == Utils.KEY_ROLE_ADMIN)
+                    {
+                        <div class="flex_container_div" style="background-color: rgb(66, 130, 91);">
+                            <a style="" class="account" href="/Admin">Admin</a>
+                        </div>
+                    }
+                }
+                else if (userName != null)
+                {
+                    @* Fallback if session is missing but cookie exists *@
+                    <div class="flex_container_div" style="background-color: rgb(53, 73, 120);">
+                        <a style="" class="account" href="/Update">Update</a>
+                    </div>
+                    <div class="flex_container_div" style="background-color: rgb(171, 10, 24)">
+                        <a style="" class="account" href="/Logout">Logout</a>
+                    </div>
+                    @if (Context.Session.GetString(Utils.KEY_ROLE) == Utils.KEY_ROLE_ADMIN)
+                    {
+                        <div class="flex_container_div" style="background-color: rgb(66, 130, 91);">
+                            <a style="" class="account" href="/Admin">Admin</a>
+                        </div>
+                    }
                 }
                 else
                 {
+                    @* Guest user: show login button *@
                     <div class="flex_container_div" style="background-color: rgb(66, 130, 91);">
                         <a style="" class="account" href="/login">Login</a>
                     </div>
+                    @if (Context.Session.GetString(Utils.KEY_ROLE) == Utils.KEY_ROLE_ADMIN)
+                    {
+                        <div class="flex_container_div" style="background-color: rgb(66, 130, 91);">
+                            <a style="" class="account" href="/Admin">Admin</a>
+                        </div>
+                    }
                 }
             </div>
 
         </div>
-           
+
     </header>
 
-    <div class="column" style="margin-top:1.2%;">
-    <main>
-        @RenderBody()
-    </main>
+    <div class="column" style="margin:auto; margin-top:4%;">
+        <main>
+            @RenderBody() @* Content from each page will be rendered here *@
+        </main>
     </div>
+
     <script>
         window.onload = function () {
-
-            localStorage.setItem("USerName", "Alice");
-
             const nameSpan = document.getElementById("name");
+
             if (nameSpan) {
-                nameSpan.textContent = "@Context.Session.GetString("first_name")";
+                nameSpan.textContent = '@Context.Session.GetString("first_name")';
             }
-        }
+        };
     </script>
 
 
@@ -124,7 +151,7 @@
 
         <div style="text-align: center; padding: 1% 0; color: white;">
             <h3 style="font-size: 1vw; margin-bottom: 6px; color:white;">Join the Sweet Side!</h3>
-            <p style="margin-bottom: 1%; font-size: 0.8vw; color:white;">Sign up and make slaves free again!</p>
+            <p style="margin-bottom: 1%; font-size: 0.8vw; color:white;">Sign up and make yourself smarter!</p>
             <a href="/Registration_form" style="background-color: rgb(37, 147, 242);  color: white; padding: 8px 16px; border-radius: 4px; text-decoration: none; font-weight: bold; font-size: 1vw;">
                 Sign Up
             </a>
@@ -132,37 +159,16 @@
 
         <div class="line"></div>
 
-        <div style="text-align: center; max-width: 600px; margin: 15px auto 8px; padding: 0 3%; color: white;">
-            <h4 style="font-size: 1vw; margin-bottom: 6px;">About SweetInfo</h4>
+        <div style="display: flex; justify-content: center; gap: 1vw; align-items: center;">
+            <p style="color: gray; font-size: 1vw;">Privacy</p>
+            <span style="color: gray; font-size: 1vw;">|</span>
+            <p style="color: gray; font-size: 1vw;">Terms</p>
         </div>
 
-        <div style="text-align: center;">
-            <ul style="list-style: none; padding: 0; margin: 0; display: inline-flex; gap: 15px;">
-                <li><a href="/Home_page" class="footer_option">Home</a></li>
-                <li><a href="/Recipes" class="footer_option">Recipes</a></li>
-                <li><a href="/Articles" class="footer_option">Articles</a></li>
-            </ul>
-        </div>
-
-        <div class="line"></div>
-
-        <div style="text-align: center; font-size: 0.7vw; color: gray; padding-bottom: 1.4%;">
-            <p style="color: grey; font-size: 1vw;">&copy; 2025 SweetInfo</p>
-            <p style="margin: 0;">
-                <a href="/Privacy" style="color: gray; text-decoration: none; font-size: 1vw;">Privacy</a> |
-                <a href="/Terms" style="color: gray; text-decoration: none; font-size: 1vw;">Terms</a>
-            </p>
-        </div>
     </footer>
 
-
-
-
-
-
-
-    
 </body>
 </html>
-<script src="js/new_code.js"></script>
-<script src="js/site.js"></script>
+
+<script src="~/js/new_code.js"></script> @* Custom JS file *@
+<script src="~/js/site.js"></script>     @* General JS for the site *@
