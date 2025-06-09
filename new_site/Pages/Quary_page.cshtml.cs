@@ -27,15 +27,13 @@ namespace new_site.Pages
 
             DBHelper1 dBHelper1 = new DBHelper1();
 
-            // Add filter condition if filter value and column are provided
+            sqlQuery = "SELECT * FROM usersTBL";
+
             if (!string.IsNullOrEmpty(filter_value) && !string.IsNullOrEmpty(filter_column))
             {
                 sqlQuery += $" WHERE {filter_column} LIKE '%{filter_value}%'";
             }
-            else
-            {
-                sqlQuery = "SELECT * FROM usersTBL";  // Show all users if no filter
-            }
+
 
             DataTableUsers = dBHelper1.RetrieveTable(sqlQuery, "usersTBL");
 

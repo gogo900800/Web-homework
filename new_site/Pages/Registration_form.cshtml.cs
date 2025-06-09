@@ -29,7 +29,8 @@ namespace new_site.Pages
         }
         public IActionResult OnPost()
         {
-            if((user == null ||
+
+            if ((user == null ||
                 string.IsNullOrWhiteSpace(user.firstName) ||
                 string.IsNullOrWhiteSpace(user.Password) ||
                 string.IsNullOrWhiteSpace(user.Email)) ||
@@ -44,6 +45,17 @@ namespace new_site.Pages
 
             DBHelper1 dB = new DBHelper1();
             int numRowsAffected = dB.Insert(user, "usersTBL");
+
+            string checkQuery = $"SELECT * FROM {Utils.DB_USERS_TABLE} WHERE Email = '{user.Email}'";
+            DataTable existingUsers = dB.RetrieveTable(checkQuery, Utils.DB_USERS_TABLE);
+
+            if (existingUsers.Rows.Count > 0)
+            {
+                errorMessage = "Email already in use.";
+                return Page();
+            }
+
+
 
             if (numRowsAffected != 1)
             {
